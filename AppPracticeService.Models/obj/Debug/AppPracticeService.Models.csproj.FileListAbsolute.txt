@@ -1,0 +1,4 @@
+C:\Users\BeGa\Documents\Visual Studio 2013\Projects\AppPracticeWebApi\AppPracticeService.Models\bin\Debug\AppPracticeService.Models.dll
+C:\Users\BeGa\Documents\Visual Studio 2013\Projects\AppPracticeWebApi\AppPracticeService.Models\bin\Debug\AppPracticeService.Models.pdb
+C:\Users\BeGa\Documents\Visual Studio 2013\Projects\AppPracticeWebApi\AppPracticeService.Models\obj\Debug\AppPracticeService.Models.dll
+C:\Users\BeGa\Documents\Visual Studio 2013\Projects\AppPracticeWebApi\AppPracticeService.Models\obj\Debug\AppPracticeService.Models.pdb

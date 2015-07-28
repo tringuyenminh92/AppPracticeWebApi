@@ -1,0 +1,74 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{BD43E2EA-68EF-45BA-83C2-A8B58ACCE1C0}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>AppPracticeService.Service</RootNamespace>
+    <AssemblyName>AppPracticeService.Service</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\AppPracticeService.Data\AppPracticeService.Data.csproj">
+      <Project>{4687420e-bdf8-4d23-9059-43e45100f4e9}</Project>
+      <Name>AppPracticeService.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AppPracticeService.Helpers\AppPracticeService.Helpers.csproj">
+      <Project>{62306187-9f50-4560-a71c-f7e1522983f6}</Project>
+      <Name>AppPracticeService.Helpers</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AppPracticeService.Models\AppPracticeService.Models.csproj">
+      <Project>{b9a120c5-37c8-40b7-883a-61c075838932}</Project>
+      <Name>AppPracticeService.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AppPracticeService.Pattern.Ef6\AppPracticeService.Pattern.Ef6.csproj">
+      <Project>{277cedf7-c079-4279-9e5b-7245c6e88cb5}</Project>
+      <Name>AppPracticeService.Pattern.Ef6</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AppPracticeService.Pattern\AppPracticeService.Pattern.csproj">
+      <Project>{2ecf51a8-b88c-4041-8de6-b80bcade4a93}</Project>
+      <Name>AppPracticeService.Pattern</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

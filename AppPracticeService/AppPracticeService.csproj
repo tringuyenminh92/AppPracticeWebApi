@@ -276,6 +276,32 @@
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\AppPracticeService.Data\AppPracticeService.Data.csproj">
+      <Project>{4687420e-bdf8-4d23-9059-43e45100f4e9}</Project>
+      <Name>AppPracticeService.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AppPracticeService.Helpers\AppPracticeService.Helpers.csproj">
+      <Project>{62306187-9f50-4560-a71c-f7e1522983f6}</Project>
+      <Name>AppPracticeService.Helpers</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AppPracticeService.Models\AppPracticeService.Models.csproj">
+      <Project>{b9a120c5-37c8-40b7-883a-61c075838932}</Project>
+      <Name>AppPracticeService.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AppPracticeService.Pattern.Ef6\AppPracticeService.Pattern.Ef6.csproj">
+      <Project>{277cedf7-c079-4279-9e5b-7245c6e88cb5}</Project>
+      <Name>AppPracticeService.Pattern.Ef6</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AppPracticeService.Pattern\AppPracticeService.Pattern.csproj">
+      <Project>{2ecf51a8-b88c-4041-8de6-b80bcade4a93}</Project>
+      <Name>AppPracticeService.Pattern</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AppPracticeService.Service\AppPracticeService.Service.csproj">
+      <Project>{bd43e2ea-68ef-45ba-83c2-a8b58acce1c0}</Project>
+      <Name>AppPracticeService.Service</Name>
+    </ProjectReference>
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
