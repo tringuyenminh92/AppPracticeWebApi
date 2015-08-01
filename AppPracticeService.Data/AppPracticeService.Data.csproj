@@ -50,45 +50,50 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="GolfCoachSystem.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>GolfCoachSystem.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="GolfCoachSystem.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>GolfCoachSystem.tt</DependentUpon>
-    </Compile>
-    <Compile Include="GolfCoachSystem.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>GolfCoachSystem.edmx</DependentUpon>
-    </Compile>
     <Compile Include="ISpContext.cs" />
+    <Compile Include="MarcData.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MarcData.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MarcData.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MarcData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MarcData.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MarcData.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Picture.cs">
+      <DependentUpon>MarcData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Product.cs">
+      <DependentUpon>MarcData.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SpContext.cs" />
   </ItemGroup>
   <ItemGroup>
-    <EntityDeploy Include="GolfCoachSystem.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>GolfCoachSystem.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-  </ItemGroup>
-  <ItemGroup>
     <None Include="App.Config" />
-    <None Include="GolfCoachSystem.Context.tt">
+    <None Include="Data\MarcApp.bak" />
+    <EntityDeploy Include="MarcData.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>MarcData.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="MarcData.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>GolfCoachSystem.edmx</DependentUpon>
-      <LastGenOutput>GolfCoachSystem.Context.cs</LastGenOutput>
+      <DependentUpon>MarcData.edmx</DependentUpon>
+      <LastGenOutput>MarcData.Context.cs</LastGenOutput>
     </None>
-    <None Include="GolfCoachSystem.edmx.diagram">
-      <DependentUpon>GolfCoachSystem.edmx</DependentUpon>
+    <None Include="MarcData.edmx.diagram">
+      <DependentUpon>MarcData.edmx</DependentUpon>
     </None>
-    <None Include="GolfCoachSystem.tt">
+    <None Include="MarcData.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>GolfCoachSystem.edmx</DependentUpon>
-      <LastGenOutput>GolfCoachSystem.cs</LastGenOutput>
+      <DependentUpon>MarcData.edmx</DependentUpon>
+      <LastGenOutput>MarcData.cs</LastGenOutput>
     </None>
     <None Include="packages.config" />
   </ItemGroup>
