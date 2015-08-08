@@ -6,8 +6,18 @@
     <edmx:Diagrams>
       <Diagram DiagramId="fce8370962f0484d98a5e5d30e91d052" Name="Diagram1" ZoomLevel="75">
         <EntityTypeShape EntityType="MarcAppModel.Picture" Width="1.5" PointX="3" PointY="2.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="MarcAppModel.Product" Width="1.5" PointX="0.75" PointY="1" IsExpanded="true" />
-        <AssociationConnector Association="MarcAppModel.FK_Picture_Product" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="MarcAppModel.City" Width="1.5" PointX="5.375" PointY="3.125" />
+        <EntityTypeShape EntityType="MarcAppModel.Order" Width="1.5" PointX="7.625" PointY="2" />
+        <EntityTypeShape EntityType="MarcAppModel.OrderDetail" Width="1.5" PointX="9.875" PointY="2.375" />
+        <EntityTypeShape EntityType="MarcAppModel.OrderHistory" Width="1.5" PointX="9.875" PointY="5.875" />
+        <EntityTypeShape EntityType="MarcAppModel.OrderStatu" Width="1.5" PointX="7.625" PointY="8.125" />
+        <AssociationConnector Association="MarcAppModel.FK_Order_City" />
+        <AssociationConnector Association="MarcAppModel.FK_OrderDetail_Order" />
+        <AssociationConnector Association="MarcAppModel.FK_OrderHistory_Order" />
+        <AssociationConnector Association="MarcAppModel.FK_OrderHistory_OrderStatus" />
+        <EntityTypeShape EntityType="MarcAppModel.Product" Width="1.5" PointX="0.75" PointY="1.375" />
+        <AssociationConnector Association="MarcAppModel.FK_OrderDetail_Product" />
+        <AssociationConnector Association="MarcAppModel.FK_Picture_Product" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

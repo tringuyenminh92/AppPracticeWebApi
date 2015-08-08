@@ -26,6 +26,11 @@ namespace AppPracticeService.Data
         }
     
         public virtual DbSet<Picture> Pictures { get; set; }
+        public virtual DbSet<City> Cities { get; set; }
+        public virtual DbSet<Order> Orders { get; set; }
+        public virtual DbSet<OrderDetail> OrderDetails { get; set; }
+        public virtual DbSet<OrderHistory> OrderHistories { get; set; }
+        public virtual DbSet<OrderStatu> OrderStatus { get; set; }
         public virtual DbSet<Product> Products { get; set; }
     }
 }

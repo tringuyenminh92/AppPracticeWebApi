@@ -50,6 +50,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="City.cs">
+      <DependentUpon>MarcData.tt</DependentUpon>
+    </Compile>
     <Compile Include="ISpContext.cs" />
     <Compile Include="MarcData.Context.cs">
       <AutoGen>True</AutoGen>
@@ -65,6 +68,18 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>MarcData.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Order.cs">
+      <DependentUpon>MarcData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="OrderDetail.cs">
+      <DependentUpon>MarcData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="OrderHistory.cs">
+      <DependentUpon>MarcData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="OrderStatu.cs">
+      <DependentUpon>MarcData.tt</DependentUpon>
     </Compile>
     <Compile Include="Picture.cs">
       <DependentUpon>MarcData.tt</DependentUpon>

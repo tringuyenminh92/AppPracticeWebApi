@@ -19,6 +19,7 @@ namespace AppPracticeService.Data
         public string ProductColor { get; set; }
         public string ContentString { get; set; }
         public byte[] ContentBytes { get; set; }
+        public Nullable<bool> Active { get; set; }
     
         public virtual Product Product { get; set; }
     }

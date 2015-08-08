@@ -1,0 +1,225 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="MarcAppModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="City">
+    <Key>
+      <PropertyRef Name="CityId" />
+    </Key>
+    <Property Name="CityId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Code" Type="varchar" MaxLength="50" />
+    <Property Name="Name" Type="nvarchar" MaxLength="500" />
+    <Property Name="Description" Type="nvarchar" MaxLength="500" />
+    <Property Name="Active" Type="bit" />
+  </EntityType>
+  <EntityType Name="Order">
+    <Key>
+      <PropertyRef Name="OrderId" />
+    </Key>
+    <Property Name="OrderId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="CreatedDate" Type="datetime" />
+    <Property Name="Total" Type="float" />
+    <Property Name="Active" Type="bit" />
+    <Property Name="DescriptionNote" Type="nvarchar" MaxLength="500" />
+    <Property Name="CustomerName" Type="nvarchar" MaxLength="250" />
+    <Property Name="Email" Type="varchar" MaxLength="100" />
+    <Property Name="Phone" Type="varchar" MaxLength="50" />
+    <Property Name="CityId" Type="uniqueidentifier" />
+    <Property Name="CustomerAddress" Type="nvarchar" MaxLength="500" />
+    <Property Name="PaidByCash" Type="bit" />
+    <Property Name="ShippingName" Type="nvarchar" MaxLength="250" />
+    <Property Name="ShippingEmail" Type="varchar" MaxLength="100" />
+    <Property Name="ShippingPhone" Type="varchar" MaxLength="50" />
+    <Property Name="ShippingAddress" Type="nvarchar" MaxLength="500" />
+  </EntityType>
+  <EntityType Name="OrderDetail">
+    <Key>
+      <PropertyRef Name="OrderDetailId" />
+    </Key>
+    <Property Name="OrderDetailId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="OrderId" Type="uniqueidentifier" />
+    <Property Name="ProductId" Type="uniqueidentifier" />
+    <Property Name="IsCancel" Type="bit" />
+    <Property Name="ProductPrice" Type="float" />
+    <Property Name="ProductName" Type="nvarchar" MaxLength="250" />
+    <Property Name="ProductCode" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="OrderHistory">
+    <Key>
+      <PropertyRef Name="OrderHistoryId" />
+    </Key>
+    <Property Name="OrderHistoryId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="OrderId" Type="uniqueidentifier" />
+    <Property Name="ModifiedDate" Type="datetime" />
+    <Property Name="OrderStatusId" Type="uniqueidentifier" />
+    <Property Name="HistoryDescription" Type="nvarchar" MaxLength="500" />
+    <Property Name="Active" Type="bit" />
+    <Property Name="HistoryStep" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+  </EntityType>
+  <EntityType Name="OrderStatus">
+    <Key>
+      <PropertyRef Name="OrderStatusId" />
+    </Key>
+    <Property Name="OrderStatusId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Code" Type="varchar" MaxLength="50" />
+    <Property Name="StatusName" Type="nvarchar" MaxLength="100" />
+    <Property Name="Icon" Type="varchar" MaxLength="50" />
+    <Property Name="Style" Type="varchar" MaxLength="50" />
+    <Property Name="Active" Type="bit" />
+  </EntityType>
+  <EntityType Name="Picture">
+    <Key>
+      <PropertyRef Name="PictureId" />
+    </Key>
+    <Property Name="PictureId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="ProductId" Type="uniqueidentifier" />
+    <Property Name="ProductColor" Type="nvarchar" MaxLength="50" />
+    <Property Name="ContentString" Type="text" />
+    <Property Name="ContentBytes" Type="varbinary(max)" />
+    <Property Name="Active" Type="bit" />
+  </EntityType>
+  <EntityType Name="Product">
+    <Key>
+      <PropertyRef Name="ProductId" />
+    </Key>
+    <Property Name="ProductId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Code" Type="varchar" MaxLength="50" />
+    <Property Name="Name" Type="nvarchar" MaxLength="250" />
+    <Property Name="Description" Type="nvarchar" MaxLength="500" />
+    <Property Name="Price" Type="float" />
+    <Property Name="NewPrice" Type="float" />
+    <Property Name="Category" Type="nvarchar" MaxLength="100" />
+    <Property Name="Size" Type="nvarchar" MaxLength="50" />
+    <Property Name="Material" Type="nvarchar" MaxLength="50" />
+    <Property Name="Color" Type="nvarchar" MaxLength="50" />
+    <Property Name="Model" Type="nvarchar" MaxLength="50" />
+    <Property Name="SeasonMonth" Type="int" />
+    <Property Name="SeasonYear" Type="int" />
+    <Property Name="CreatedDate" Type="date" />
+    <Property Name="CreatedBy" Type="int" />
+    <Property Name="ModifiedDate" Type="date" />
+    <Property Name="ModifiedBy" Type="int" />
+    <Property Name="Active" Type="bit" />
+  </EntityType>
+  <EntityType Name="ShippingInformation">
+    <Key>
+      <PropertyRef Name="ShippingInformationId" />
+    </Key>
+    <Property Name="ShippingInformationId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="FullName" Type="nvarchar" MaxLength="200" />
+    <Property Name="Email" Type="varchar" MaxLength="100" />
+    <Property Name="Phone" Type="varchar" MaxLength="50" />
+    <Property Name="CityId" Type="uniqueidentifier" />
+    <Property Name="Address" Type="nvarchar" MaxLength="250" />
+    <Property Name="PaidByCash" Type="bit" />
+    <Property Name="ReceiverName" Type="nvarchar" MaxLength="200" />
+    <Property Name="ReceiverEmail" Type="varchar" MaxLength="100" />
+    <Property Name="ReceiverPhone" Type="varchar" MaxLength="50" />
+    <Property Name="ReceiverAddress" Type="nvarchar" MaxLength="250" />
+    <Property Name="Active" Type="bit" />
+  </EntityType>
+  <Association Name="FK_Order_City">
+    <End Role="City" Type="Self.City" Multiplicity="0..1" />
+    <End Role="Order" Type="Self.Order" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="City">
+        <PropertyRef Name="CityId" />
+      </Principal>
+      <Dependent Role="Order">
+        <PropertyRef Name="CityId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_OrderDetail_Order">
+    <End Role="Order" Type="Self.Order" Multiplicity="0..1" />
+    <End Role="OrderDetail" Type="Self.OrderDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Order">
+        <PropertyRef Name="OrderId" />
+      </Principal>
+      <Dependent Role="OrderDetail">
+        <PropertyRef Name="OrderId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_OrderDetail_Product">
+    <End Role="Product" Type="Self.Product" Multiplicity="0..1" />
+    <End Role="OrderDetail" Type="Self.OrderDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="ProductId" />
+      </Principal>
+      <Dependent Role="OrderDetail">
+        <PropertyRef Name="ProductId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_OrderHistory_Order">
+    <End Role="Order" Type="Self.Order" Multiplicity="0..1" />
+    <End Role="OrderHistory" Type="Self.OrderHistory" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Order">
+        <PropertyRef Name="OrderId" />
+      </Principal>
+      <Dependent Role="OrderHistory">
+        <PropertyRef Name="OrderId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_OrderHistory_OrderStatus">
+    <End Role="OrderStatus" Type="Self.OrderStatus" Multiplicity="0..1" />
+    <End Role="OrderHistory" Type="Self.OrderHistory" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="OrderStatus">
+        <PropertyRef Name="OrderStatusId" />
+      </Principal>
+      <Dependent Role="OrderHistory">
+        <PropertyRef Name="OrderStatusId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Picture_Product">
+    <End Role="Product" Type="Self.Product" Multiplicity="0..1" />
+    <End Role="Picture" Type="Self.Picture" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="ProductId" />
+      </Principal>
+      <Dependent Role="Picture">
+        <PropertyRef Name="ProductId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="MarcAppModelStoreContainer">
+    <EntitySet Name="City" EntityType="Self.City" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Order" EntityType="Self.Order" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="OrderDetail" EntityType="Self.OrderDetail" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="OrderHistory" EntityType="Self.OrderHistory" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="OrderStatus" EntityType="Self.OrderStatus" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Picture" EntityType="Self.Picture" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Product" EntityType="Self.Product" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ShippingInformation" EntityType="Self.ShippingInformation" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Order_City" Association="Self.FK_Order_City">
+      <End Role="City" EntitySet="City" />
+      <End Role="Order" EntitySet="Order" />
+    </AssociationSet>
+    <AssociationSet Name="FK_OrderDetail_Order" Association="Self.FK_OrderDetail_Order">
+      <End Role="Order" EntitySet="Order" />
+      <End Role="OrderDetail" EntitySet="OrderDetail" />
+    </AssociationSet>
+    <AssociationSet Name="FK_OrderDetail_Product" Association="Self.FK_OrderDetail_Product">
+      <End Role="Product" EntitySet="Product" />
+      <End Role="OrderDetail" EntitySet="OrderDetail" />
+    </AssociationSet>
+    <AssociationSet Name="FK_OrderHistory_Order" Association="Self.FK_OrderHistory_Order">
+      <End Role="Order" EntitySet="Order" />
+      <End Role="OrderHistory" EntitySet="OrderHistory" />
+    </AssociationSet>
+    <AssociationSet Name="FK_OrderHistory_OrderStatus" Association="Self.FK_OrderHistory_OrderStatus">
+      <End Role="OrderStatus" EntitySet="OrderStatus" />
+      <End Role="OrderHistory" EntitySet="OrderHistory" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Picture_Product" Association="Self.FK_Picture_Product">
+      <End Role="Product" EntitySet="Product" />
+      <End Role="Picture" EntitySet="Picture" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

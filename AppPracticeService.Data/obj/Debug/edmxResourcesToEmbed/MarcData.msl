@@ -1,0 +1,129 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="MarcAppModelStoreContainer" CdmEntityContainer="MarcAppEntities">
+    <EntitySetMapping Name="Pictures">
+      <EntityTypeMapping TypeName="MarcAppModel.Picture">
+        <MappingFragment StoreEntitySet="Picture">
+          <ScalarProperty Name="Active" ColumnName="Active" />
+          <ScalarProperty Name="PictureId" ColumnName="PictureId" />
+          <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+          <ScalarProperty Name="ProductColor" ColumnName="ProductColor" />
+          <ScalarProperty Name="ContentString" ColumnName="ContentString" />
+          <ScalarProperty Name="ContentBytes" ColumnName="ContentBytes" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Products">
+      <EntityTypeMapping TypeName="MarcAppModel.Product">
+        <MappingFragment StoreEntitySet="Product">
+          <ScalarProperty Name="Active" ColumnName="Active" />
+          <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+          <ScalarProperty Name="Code" ColumnName="Code" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Price" ColumnName="Price" />
+          <ScalarProperty Name="NewPrice" ColumnName="NewPrice" />
+          <ScalarProperty Name="Category" ColumnName="Category" />
+          <ScalarProperty Name="Size" ColumnName="Size" />
+          <ScalarProperty Name="Material" ColumnName="Material" />
+          <ScalarProperty Name="Color" ColumnName="Color" />
+          <ScalarProperty Name="Model" ColumnName="Model" />
+          <ScalarProperty Name="SeasonMonth" ColumnName="SeasonMonth" />
+          <ScalarProperty Name="SeasonYear" ColumnName="SeasonYear" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+          <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Cities">
+      <EntityTypeMapping TypeName="MarcAppModel.City">
+        <MappingFragment StoreEntitySet="City">
+          <ScalarProperty Name="Active" ColumnName="Active" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Code" ColumnName="Code" />
+          <ScalarProperty Name="CityId" ColumnName="CityId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Orders">
+      <EntityTypeMapping TypeName="MarcAppModel.Order">
+        <MappingFragment StoreEntitySet="Order">
+          <ScalarProperty Name="ShippingAddress" ColumnName="ShippingAddress" />
+          <ScalarProperty Name="ShippingPhone" ColumnName="ShippingPhone" />
+          <ScalarProperty Name="ShippingEmail" ColumnName="ShippingEmail" />
+          <ScalarProperty Name="ShippingName" ColumnName="ShippingName" />
+          <ScalarProperty Name="PaidByCash" ColumnName="PaidByCash" />
+          <ScalarProperty Name="CustomerAddress" ColumnName="CustomerAddress" />
+          <ScalarProperty Name="CityId" ColumnName="CityId" />
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="CustomerName" ColumnName="CustomerName" />
+          <ScalarProperty Name="DescriptionNote" ColumnName="DescriptionNote" />
+          <ScalarProperty Name="Active" ColumnName="Active" />
+          <ScalarProperty Name="Total" ColumnName="Total" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="OrderId" ColumnName="OrderId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="OrderDetails">
+      <EntityTypeMapping TypeName="MarcAppModel.OrderDetail">
+        <MappingFragment StoreEntitySet="OrderDetail">
+          <ScalarProperty Name="ProductCode" ColumnName="ProductCode" />
+          <ScalarProperty Name="ProductName" ColumnName="ProductName" />
+          <ScalarProperty Name="ProductPrice" ColumnName="ProductPrice" />
+          <ScalarProperty Name="IsCancel" ColumnName="IsCancel" />
+          <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+          <ScalarProperty Name="OrderId" ColumnName="OrderId" />
+          <ScalarProperty Name="OrderDetailId" ColumnName="OrderDetailId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="OrderHistories">
+      <EntityTypeMapping TypeName="MarcAppModel.OrderHistory">
+        <MappingFragment StoreEntitySet="OrderHistory">
+          <ScalarProperty Name="HistoryStep" ColumnName="HistoryStep" />
+          <ScalarProperty Name="Active" ColumnName="Active" />
+          <ScalarProperty Name="HistoryDescription" ColumnName="HistoryDescription" />
+          <ScalarProperty Name="OrderStatusId" ColumnName="OrderStatusId" />
+          <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+          <ScalarProperty Name="OrderId" ColumnName="OrderId" />
+          <ScalarProperty Name="OrderHistoryId" ColumnName="OrderHistoryId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="OrderStatus">
+      <EntityTypeMapping TypeName="MarcAppModel.OrderStatu">
+        <MappingFragment StoreEntitySet="OrderStatus">
+          <ScalarProperty Name="Active" ColumnName="Active" />
+          <ScalarProperty Name="Style" ColumnName="Style" />
+          <ScalarProperty Name="Icon" ColumnName="Icon" />
+          <ScalarProperty Name="StatusName" ColumnName="StatusName" />
+          <ScalarProperty Name="Code" ColumnName="Code" />
+          <ScalarProperty Name="OrderStatusId" ColumnName="OrderStatusId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ShippingInformations">
+      <EntityTypeMapping TypeName="MarcAppModel.ShippingInformation">
+        <MappingFragment StoreEntitySet="ShippingInformation">
+          <ScalarProperty Name="Active" ColumnName="Active" />
+          <ScalarProperty Name="ReceiverAddress" ColumnName="ReceiverAddress" />
+          <ScalarProperty Name="ReceiverPhone" ColumnName="ReceiverPhone" />
+          <ScalarProperty Name="ReceiverEmail" ColumnName="ReceiverEmail" />
+          <ScalarProperty Name="ReceiverName" ColumnName="ReceiverName" />
+          <ScalarProperty Name="PaidByCash" ColumnName="PaidByCash" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="CityId" ColumnName="CityId" />
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="FullName" ColumnName="FullName" />
+          <ScalarProperty Name="ShippingInformationId" ColumnName="ShippingInformationId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

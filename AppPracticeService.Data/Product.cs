@@ -16,6 +16,7 @@ namespace AppPracticeService.Data
     {
         public Product()
         {
+            this.OrderDetails = new HashSet<OrderDetail>();
             this.Pictures = new HashSet<Picture>();
         }
     
@@ -36,8 +37,9 @@ namespace AppPracticeService.Data
         public Nullable<int> CreatedBy { get; set; }
         public Nullable<System.DateTime> ModifiedDate { get; set; }
         public Nullable<int> ModifiedBy { get; set; }
-        public Nullable<bool> IsActive { get; set; }
+        public Nullable<bool> Active { get; set; }
     
+        public virtual ICollection<OrderDetail> OrderDetails { get; set; }
         public virtual ICollection<Picture> Pictures { get; set; }
     }
 }
