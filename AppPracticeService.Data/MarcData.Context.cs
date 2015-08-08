@@ -7,13 +7,15 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using AppPracticeService.Pattern.Ef6;
+
 namespace AppPracticeService.Data
 {
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class MarcAppEntities : DbContext
+    public partial class MarcAppEntities : DataContext
     {
         public MarcAppEntities()
             : base("name=MarcAppEntities")

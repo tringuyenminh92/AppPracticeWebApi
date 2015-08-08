@@ -13,7 +13,7 @@
 
 namespace AppPracticeService.Data
 {
-    public partial class GolfCoachEntities : ISpContext
+    public partial class MarcAppEntities : ISpContext
     {
     }
 }

@@ -1,4 +1,16 @@
-﻿using System;
+﻿//***********************************************************************
+//
+//	Created By: Nguyen Minh Tri
+//	Created Date: 01-08-2015
+//	Description: Add comment header,
+//
+//	Modified By: Nguyen Minh Tri
+//	Modified Date: 08-08-2015
+//	Description: to help saving input data
+//
+//***********************************************************************
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 

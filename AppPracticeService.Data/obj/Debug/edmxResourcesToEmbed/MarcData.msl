@@ -13,30 +13,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Products">
-      <EntityTypeMapping TypeName="MarcAppModel.Product">
-        <MappingFragment StoreEntitySet="Product">
-          <ScalarProperty Name="Active" ColumnName="Active" />
-          <ScalarProperty Name="ProductId" ColumnName="ProductId" />
-          <ScalarProperty Name="Code" ColumnName="Code" />
-          <ScalarProperty Name="Name" ColumnName="Name" />
-          <ScalarProperty Name="Description" ColumnName="Description" />
-          <ScalarProperty Name="Price" ColumnName="Price" />
-          <ScalarProperty Name="NewPrice" ColumnName="NewPrice" />
-          <ScalarProperty Name="Category" ColumnName="Category" />
-          <ScalarProperty Name="Size" ColumnName="Size" />
-          <ScalarProperty Name="Material" ColumnName="Material" />
-          <ScalarProperty Name="Color" ColumnName="Color" />
-          <ScalarProperty Name="Model" ColumnName="Model" />
-          <ScalarProperty Name="SeasonMonth" ColumnName="SeasonMonth" />
-          <ScalarProperty Name="SeasonYear" ColumnName="SeasonYear" />
-          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
-          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
-          <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
-          <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="Cities">
       <EntityTypeMapping TypeName="MarcAppModel.City">
         <MappingFragment StoreEntitySet="City">
@@ -107,21 +83,27 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="ShippingInformations">
-      <EntityTypeMapping TypeName="MarcAppModel.ShippingInformation">
-        <MappingFragment StoreEntitySet="ShippingInformation">
+    <EntitySetMapping Name="Products">
+      <EntityTypeMapping TypeName="MarcAppModel.Product">
+        <MappingFragment StoreEntitySet="Product">
           <ScalarProperty Name="Active" ColumnName="Active" />
-          <ScalarProperty Name="ReceiverAddress" ColumnName="ReceiverAddress" />
-          <ScalarProperty Name="ReceiverPhone" ColumnName="ReceiverPhone" />
-          <ScalarProperty Name="ReceiverEmail" ColumnName="ReceiverEmail" />
-          <ScalarProperty Name="ReceiverName" ColumnName="ReceiverName" />
-          <ScalarProperty Name="PaidByCash" ColumnName="PaidByCash" />
-          <ScalarProperty Name="Address" ColumnName="Address" />
-          <ScalarProperty Name="CityId" ColumnName="CityId" />
-          <ScalarProperty Name="Phone" ColumnName="Phone" />
-          <ScalarProperty Name="Email" ColumnName="Email" />
-          <ScalarProperty Name="FullName" ColumnName="FullName" />
-          <ScalarProperty Name="ShippingInformationId" ColumnName="ShippingInformationId" />
+          <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+          <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="SeasonYear" ColumnName="SeasonYear" />
+          <ScalarProperty Name="SeasonMonth" ColumnName="SeasonMonth" />
+          <ScalarProperty Name="Model" ColumnName="Model" />
+          <ScalarProperty Name="Color" ColumnName="Color" />
+          <ScalarProperty Name="Material" ColumnName="Material" />
+          <ScalarProperty Name="Size" ColumnName="Size" />
+          <ScalarProperty Name="Category" ColumnName="Category" />
+          <ScalarProperty Name="NewPrice" ColumnName="NewPrice" />
+          <ScalarProperty Name="Price" ColumnName="Price" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Code" ColumnName="Code" />
+          <ScalarProperty Name="ProductId" ColumnName="ProductId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
