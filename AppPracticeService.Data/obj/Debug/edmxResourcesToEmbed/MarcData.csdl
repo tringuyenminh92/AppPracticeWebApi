@@ -1,51 +1,39 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="MarcAppModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-  <EntityType Name="Picture">
-    <Key>
-      <PropertyRef Name="PictureId" />
-    </Key>
-    <Property Name="PictureId" Type="Guid" Nullable="false" />
-    <Property Name="ProductId" Type="Guid" />
-    <Property Name="ProductColor" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="ContentString" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-    <Property Name="ContentBytes" Type="Binary" MaxLength="Max" FixedLength="false" />
-    <Property Name="Active" Type="Boolean" />
-    <NavigationProperty Name="Product" Relationship="MarcAppModel.FK_Picture_Product" FromRole="Picture" ToRole="Product" />
-  </EntityType>
   <EntityContainer Name="MarcAppEntities" annotation:LazyLoadingEnabled="true">
-    <EntitySet Name="Pictures" EntityType="Self.Picture" />
-    <EntitySet Name="Cities" EntityType="MarcAppModel.City" />
-    <EntitySet Name="Orders" EntityType="MarcAppModel.Order" />
-    <EntitySet Name="OrderDetails" EntityType="MarcAppModel.OrderDetail" />
-    <EntitySet Name="OrderHistories" EntityType="MarcAppModel.OrderHistory" />
-    <EntitySet Name="OrderStatus" EntityType="MarcAppModel.OrderStatu" />
+    <EntitySet Name="T_City" EntityType="MarcAppModel.T_City" />
+    <EntitySet Name="T_Order" EntityType="MarcAppModel.T_Order" />
+    <EntitySet Name="T_OrderDetail" EntityType="MarcAppModel.T_OrderDetail" />
+    <EntitySet Name="T_OrderHistory" EntityType="MarcAppModel.T_OrderHistory" />
+    <EntitySet Name="T_OrderStatus" EntityType="MarcAppModel.T_OrderStatus" />
+    <EntitySet Name="T_Picture" EntityType="MarcAppModel.T_Picture" />
+    <EntitySet Name="T_Product" EntityType="MarcAppModel.T_Product" />
     <AssociationSet Name="FK_Order_City" Association="MarcAppModel.FK_Order_City">
-      <End Role="City" EntitySet="Cities" />
-      <End Role="Order" EntitySet="Orders" />
+      <End Role="T_City" EntitySet="T_City" />
+      <End Role="T_Order" EntitySet="T_Order" />
     </AssociationSet>
     <AssociationSet Name="FK_OrderDetail_Order" Association="MarcAppModel.FK_OrderDetail_Order">
-      <End Role="Order" EntitySet="Orders" />
-      <End Role="OrderDetail" EntitySet="OrderDetails" />
+      <End Role="T_Order" EntitySet="T_Order" />
+      <End Role="T_OrderDetail" EntitySet="T_OrderDetail" />
     </AssociationSet>
     <AssociationSet Name="FK_OrderHistory_Order" Association="MarcAppModel.FK_OrderHistory_Order">
-      <End Role="Order" EntitySet="Orders" />
-      <End Role="OrderHistory" EntitySet="OrderHistories" />
+      <End Role="T_Order" EntitySet="T_Order" />
+      <End Role="T_OrderHistory" EntitySet="T_OrderHistory" />
+    </AssociationSet>
+    <AssociationSet Name="FK_OrderDetail_Product" Association="MarcAppModel.FK_OrderDetail_Product">
+      <End Role="T_Product" EntitySet="T_Product" />
+      <End Role="T_OrderDetail" EntitySet="T_OrderDetail" />
     </AssociationSet>
     <AssociationSet Name="FK_OrderHistory_OrderStatus" Association="MarcAppModel.FK_OrderHistory_OrderStatus">
-      <End Role="OrderStatu" EntitySet="OrderStatus" />
-      <End Role="OrderHistory" EntitySet="OrderHistories" />
-    </AssociationSet>
-    <EntitySet Name="Products" EntityType="MarcAppModel.Product" />
-    <AssociationSet Name="FK_OrderDetail_Product" Association="MarcAppModel.FK_OrderDetail_Product">
-      <End Role="Product" EntitySet="Products" />
-      <End Role="OrderDetail" EntitySet="OrderDetails" />
+      <End Role="T_OrderStatus" EntitySet="T_OrderStatus" />
+      <End Role="T_OrderHistory" EntitySet="T_OrderHistory" />
     </AssociationSet>
     <AssociationSet Name="FK_Picture_Product" Association="MarcAppModel.FK_Picture_Product">
-      <End Role="Product" EntitySet="Products" />
-      <End Role="Picture" EntitySet="Pictures" />
+      <End Role="T_Product" EntitySet="T_Product" />
+      <End Role="T_Picture" EntitySet="T_Picture" />
     </AssociationSet>
   </EntityContainer>
-  <EntityType Name="City">
+  <EntityType Name="T_City">
     <Key>
       <PropertyRef Name="CityId" />
     </Key>
@@ -54,9 +42,9 @@
     <Property Name="Name" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
     <Property Name="Description" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
     <Property Name="Active" Type="Boolean" />
-    <NavigationProperty Name="Orders" Relationship="MarcAppModel.FK_Order_City" FromRole="City" ToRole="Order" />
+    <NavigationProperty Name="T_Order" Relationship="MarcAppModel.FK_Order_City" FromRole="T_City" ToRole="T_Order" />
   </EntityType>
-  <EntityType Name="Order">
+  <EntityType Name="T_Order">
     <Key>
       <PropertyRef Name="OrderId" />
     </Key>
@@ -75,11 +63,11 @@
     <Property Name="ShippingEmail" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
     <Property Name="ShippingPhone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="ShippingAddress" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
-    <NavigationProperty Name="City" Relationship="MarcAppModel.FK_Order_City" FromRole="Order" ToRole="City" />
-    <NavigationProperty Name="OrderDetails" Relationship="MarcAppModel.FK_OrderDetail_Order" FromRole="Order" ToRole="OrderDetail" />
-    <NavigationProperty Name="OrderHistories" Relationship="MarcAppModel.FK_OrderHistory_Order" FromRole="Order" ToRole="OrderHistory" />
+    <NavigationProperty Name="T_City" Relationship="MarcAppModel.FK_Order_City" FromRole="T_Order" ToRole="T_City" />
+    <NavigationProperty Name="T_OrderDetail" Relationship="MarcAppModel.FK_OrderDetail_Order" FromRole="T_Order" ToRole="T_OrderDetail" />
+    <NavigationProperty Name="T_OrderHistory" Relationship="MarcAppModel.FK_OrderHistory_Order" FromRole="T_Order" ToRole="T_OrderHistory" />
   </EntityType>
-  <EntityType Name="OrderDetail">
+  <EntityType Name="T_OrderDetail">
     <Key>
       <PropertyRef Name="OrderDetailId" />
     </Key>
@@ -90,10 +78,10 @@
     <Property Name="ProductPrice" Type="Double" />
     <Property Name="ProductName" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
     <Property Name="ProductCode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <NavigationProperty Name="Order" Relationship="MarcAppModel.FK_OrderDetail_Order" FromRole="OrderDetail" ToRole="Order" />
-    <NavigationProperty Name="Product" Relationship="MarcAppModel.FK_OrderDetail_Product" FromRole="OrderDetail" ToRole="Product" />
+    <NavigationProperty Name="T_Order" Relationship="MarcAppModel.FK_OrderDetail_Order" FromRole="T_OrderDetail" ToRole="T_Order" />
+    <NavigationProperty Name="T_Product" Relationship="MarcAppModel.FK_OrderDetail_Product" FromRole="T_OrderDetail" ToRole="T_Product" />
   </EntityType>
-  <EntityType Name="OrderHistory">
+  <EntityType Name="T_OrderHistory">
     <Key>
       <PropertyRef Name="OrderHistoryId" />
     </Key>
@@ -104,10 +92,10 @@
     <Property Name="HistoryDescription" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
     <Property Name="Active" Type="Boolean" />
     <Property Name="HistoryStep" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <NavigationProperty Name="Order" Relationship="MarcAppModel.FK_OrderHistory_Order" FromRole="OrderHistory" ToRole="Order" />
-    <NavigationProperty Name="OrderStatu" Relationship="MarcAppModel.FK_OrderHistory_OrderStatus" FromRole="OrderHistory" ToRole="OrderStatu" />
+    <NavigationProperty Name="T_Order" Relationship="MarcAppModel.FK_OrderHistory_Order" FromRole="T_OrderHistory" ToRole="T_Order" />
+    <NavigationProperty Name="T_OrderStatus" Relationship="MarcAppModel.FK_OrderHistory_OrderStatus" FromRole="T_OrderHistory" ToRole="T_OrderStatus" />
   </EntityType>
-  <EntityType Name="OrderStatu">
+  <EntityType Name="T_OrderStatus">
     <Key>
       <PropertyRef Name="OrderStatusId" />
     </Key>
@@ -117,57 +105,23 @@
     <Property Name="Icon" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="Style" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="Active" Type="Boolean" />
-    <NavigationProperty Name="OrderHistories" Relationship="MarcAppModel.FK_OrderHistory_OrderStatus" FromRole="OrderStatu" ToRole="OrderHistory" />
+    <NavigationProperty Name="T_OrderHistory" Relationship="MarcAppModel.FK_OrderHistory_OrderStatus" FromRole="T_OrderStatus" ToRole="T_OrderHistory" />
   </EntityType>
-  <Association Name="FK_Order_City">
-    <End Type="MarcAppModel.City" Role="City" Multiplicity="0..1" />
-    <End Type="MarcAppModel.Order" Role="Order" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="City">
-        <PropertyRef Name="CityId" />
-      </Principal>
-      <Dependent Role="Order">
-        <PropertyRef Name="CityId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_OrderDetail_Order">
-    <End Type="MarcAppModel.Order" Role="Order" Multiplicity="0..1" />
-    <End Type="MarcAppModel.OrderDetail" Role="OrderDetail" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Order">
-        <PropertyRef Name="OrderId" />
-      </Principal>
-      <Dependent Role="OrderDetail">
-        <PropertyRef Name="OrderId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_OrderHistory_Order">
-    <End Type="MarcAppModel.Order" Role="Order" Multiplicity="0..1" />
-    <End Type="MarcAppModel.OrderHistory" Role="OrderHistory" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Order">
-        <PropertyRef Name="OrderId" />
-      </Principal>
-      <Dependent Role="OrderHistory">
-        <PropertyRef Name="OrderId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_OrderHistory_OrderStatus">
-    <End Type="MarcAppModel.OrderStatu" Role="OrderStatu" Multiplicity="0..1" />
-    <End Type="MarcAppModel.OrderHistory" Role="OrderHistory" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="OrderStatu">
-        <PropertyRef Name="OrderStatusId" />
-      </Principal>
-      <Dependent Role="OrderHistory">
-        <PropertyRef Name="OrderStatusId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <EntityType Name="Product">
+  <EntityType Name="T_Picture">
+    <Key>
+      <PropertyRef Name="PictureId" />
+    </Key>
+    <Property Name="PictureId" Type="Guid" Nullable="false" />
+    <Property Name="ProductId" Type="Guid" />
+    <Property Name="ProductColor" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ContentString" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="ContentBytes" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="Active" Type="Boolean" />
+    <Property Name="IsProfile" Type="Boolean" />
+    <Property Name="DisplayOrder" Type="Int32" />
+    <NavigationProperty Name="T_Product" Relationship="MarcAppModel.FK_Picture_Product" FromRole="T_Picture" ToRole="T_Product" />
+  </EntityType>
+  <EntityType Name="T_Product">
     <Key>
       <PropertyRef Name="ProductId" />
     </Key>
@@ -178,9 +132,15 @@
     <Property Name="Price" Type="Double" />
     <Property Name="NewPrice" Type="Double" />
     <Property Name="Category" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-    <Property Name="Size" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="SizeS" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="SizeM" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="SizeL" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="Material" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="Color" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Color1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Color2" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Color3" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Color4" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Color5" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="Model" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="SeasonMonth" Type="Int32" />
     <Property Name="SeasonYear" Type="Int32" />
@@ -189,29 +149,77 @@
     <Property Name="ModifiedDate" Type="DateTime" Precision="0" />
     <Property Name="ModifiedBy" Type="Int32" />
     <Property Name="Active" Type="Boolean" />
-    <NavigationProperty Name="OrderDetails" Relationship="MarcAppModel.FK_OrderDetail_Product" FromRole="Product" ToRole="OrderDetail" />
-    <NavigationProperty Name="Pictures" Relationship="MarcAppModel.FK_Picture_Product" FromRole="Product" ToRole="Picture" />
+    <NavigationProperty Name="T_OrderDetail" Relationship="MarcAppModel.FK_OrderDetail_Product" FromRole="T_Product" ToRole="T_OrderDetail" />
+    <NavigationProperty Name="T_Picture" Relationship="MarcAppModel.FK_Picture_Product" FromRole="T_Product" ToRole="T_Picture" />
   </EntityType>
-  <Association Name="FK_OrderDetail_Product">
-    <End Type="MarcAppModel.Product" Role="Product" Multiplicity="0..1" />
-    <End Type="MarcAppModel.OrderDetail" Role="OrderDetail" Multiplicity="*" />
+  <Association Name="FK_Order_City">
+    <End Type="MarcAppModel.T_City" Role="T_City" Multiplicity="0..1" />
+    <End Type="MarcAppModel.T_Order" Role="T_Order" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="Product">
+      <Principal Role="T_City">
+        <PropertyRef Name="CityId" />
+      </Principal>
+      <Dependent Role="T_Order">
+        <PropertyRef Name="CityId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_OrderDetail_Order">
+    <End Type="MarcAppModel.T_Order" Role="T_Order" Multiplicity="0..1" />
+    <End Type="MarcAppModel.T_OrderDetail" Role="T_OrderDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="T_Order">
+        <PropertyRef Name="OrderId" />
+      </Principal>
+      <Dependent Role="T_OrderDetail">
+        <PropertyRef Name="OrderId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_OrderHistory_Order">
+    <End Type="MarcAppModel.T_Order" Role="T_Order" Multiplicity="0..1" />
+    <End Type="MarcAppModel.T_OrderHistory" Role="T_OrderHistory" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="T_Order">
+        <PropertyRef Name="OrderId" />
+      </Principal>
+      <Dependent Role="T_OrderHistory">
+        <PropertyRef Name="OrderId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_OrderDetail_Product">
+    <End Type="MarcAppModel.T_Product" Role="T_Product" Multiplicity="0..1" />
+    <End Type="MarcAppModel.T_OrderDetail" Role="T_OrderDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="T_Product">
         <PropertyRef Name="ProductId" />
       </Principal>
-      <Dependent Role="OrderDetail">
+      <Dependent Role="T_OrderDetail">
         <PropertyRef Name="ProductId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_Picture_Product">
-    <End Type="MarcAppModel.Product" Role="Product" Multiplicity="0..1" />
-    <End Type="MarcAppModel.Picture" Role="Picture" Multiplicity="*" />
+  <Association Name="FK_OrderHistory_OrderStatus">
+    <End Type="MarcAppModel.T_OrderStatus" Role="T_OrderStatus" Multiplicity="0..1" />
+    <End Type="MarcAppModel.T_OrderHistory" Role="T_OrderHistory" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="Product">
+      <Principal Role="T_OrderStatus">
+        <PropertyRef Name="OrderStatusId" />
+      </Principal>
+      <Dependent Role="T_OrderHistory">
+        <PropertyRef Name="OrderStatusId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Picture_Product">
+    <End Type="MarcAppModel.T_Product" Role="T_Product" Multiplicity="0..1" />
+    <End Type="MarcAppModel.T_Picture" Role="T_Picture" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="T_Product">
         <PropertyRef Name="ProductId" />
       </Principal>
-      <Dependent Role="Picture">
+      <Dependent Role="T_Picture">
         <PropertyRef Name="ProductId" />
       </Dependent>
     </ReferentialConstraint>

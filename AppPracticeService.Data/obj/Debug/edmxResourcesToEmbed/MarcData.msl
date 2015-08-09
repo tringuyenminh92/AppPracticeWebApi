@@ -1,21 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
   <EntityContainerMapping StorageEntityContainer="MarcAppModelStoreContainer" CdmEntityContainer="MarcAppEntities">
-    <EntitySetMapping Name="Pictures">
-      <EntityTypeMapping TypeName="MarcAppModel.Picture">
-        <MappingFragment StoreEntitySet="Picture">
-          <ScalarProperty Name="Active" ColumnName="Active" />
-          <ScalarProperty Name="PictureId" ColumnName="PictureId" />
-          <ScalarProperty Name="ProductId" ColumnName="ProductId" />
-          <ScalarProperty Name="ProductColor" ColumnName="ProductColor" />
-          <ScalarProperty Name="ContentString" ColumnName="ContentString" />
-          <ScalarProperty Name="ContentBytes" ColumnName="ContentBytes" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="Cities">
-      <EntityTypeMapping TypeName="MarcAppModel.City">
-        <MappingFragment StoreEntitySet="City">
+    <EntitySetMapping Name="T_City">
+      <EntityTypeMapping TypeName="MarcAppModel.T_City">
+        <MappingFragment StoreEntitySet="T_City">
           <ScalarProperty Name="Active" ColumnName="Active" />
           <ScalarProperty Name="Description" ColumnName="Description" />
           <ScalarProperty Name="Name" ColumnName="Name" />
@@ -24,9 +12,9 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Orders">
-      <EntityTypeMapping TypeName="MarcAppModel.Order">
-        <MappingFragment StoreEntitySet="Order">
+    <EntitySetMapping Name="T_Order">
+      <EntityTypeMapping TypeName="MarcAppModel.T_Order">
+        <MappingFragment StoreEntitySet="T_Order">
           <ScalarProperty Name="ShippingAddress" ColumnName="ShippingAddress" />
           <ScalarProperty Name="ShippingPhone" ColumnName="ShippingPhone" />
           <ScalarProperty Name="ShippingEmail" ColumnName="ShippingEmail" />
@@ -45,9 +33,9 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="OrderDetails">
-      <EntityTypeMapping TypeName="MarcAppModel.OrderDetail">
-        <MappingFragment StoreEntitySet="OrderDetail">
+    <EntitySetMapping Name="T_OrderDetail">
+      <EntityTypeMapping TypeName="MarcAppModel.T_OrderDetail">
+        <MappingFragment StoreEntitySet="T_OrderDetail">
           <ScalarProperty Name="ProductCode" ColumnName="ProductCode" />
           <ScalarProperty Name="ProductName" ColumnName="ProductName" />
           <ScalarProperty Name="ProductPrice" ColumnName="ProductPrice" />
@@ -58,9 +46,9 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="OrderHistories">
-      <EntityTypeMapping TypeName="MarcAppModel.OrderHistory">
-        <MappingFragment StoreEntitySet="OrderHistory">
+    <EntitySetMapping Name="T_OrderHistory">
+      <EntityTypeMapping TypeName="MarcAppModel.T_OrderHistory">
+        <MappingFragment StoreEntitySet="T_OrderHistory">
           <ScalarProperty Name="HistoryStep" ColumnName="HistoryStep" />
           <ScalarProperty Name="Active" ColumnName="Active" />
           <ScalarProperty Name="HistoryDescription" ColumnName="HistoryDescription" />
@@ -71,9 +59,9 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="OrderStatus">
-      <EntityTypeMapping TypeName="MarcAppModel.OrderStatu">
-        <MappingFragment StoreEntitySet="OrderStatus">
+    <EntitySetMapping Name="T_OrderStatus">
+      <EntityTypeMapping TypeName="MarcAppModel.T_OrderStatus">
+        <MappingFragment StoreEntitySet="T_OrderStatus">
           <ScalarProperty Name="Active" ColumnName="Active" />
           <ScalarProperty Name="Style" ColumnName="Style" />
           <ScalarProperty Name="Icon" ColumnName="Icon" />
@@ -83,9 +71,23 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Products">
-      <EntityTypeMapping TypeName="MarcAppModel.Product">
-        <MappingFragment StoreEntitySet="Product">
+    <EntitySetMapping Name="T_Picture">
+      <EntityTypeMapping TypeName="MarcAppModel.T_Picture">
+        <MappingFragment StoreEntitySet="T_Picture">
+          <ScalarProperty Name="DisplayOrder" ColumnName="DisplayOrder" />
+          <ScalarProperty Name="IsProfile" ColumnName="IsProfile" />
+          <ScalarProperty Name="Active" ColumnName="Active" />
+          <ScalarProperty Name="ContentBytes" ColumnName="ContentBytes" />
+          <ScalarProperty Name="ContentString" ColumnName="ContentString" />
+          <ScalarProperty Name="ProductColor" ColumnName="ProductColor" />
+          <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+          <ScalarProperty Name="PictureId" ColumnName="PictureId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="T_Product">
+      <EntityTypeMapping TypeName="MarcAppModel.T_Product">
+        <MappingFragment StoreEntitySet="T_Product">
           <ScalarProperty Name="Active" ColumnName="Active" />
           <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
           <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
@@ -94,9 +96,15 @@
           <ScalarProperty Name="SeasonYear" ColumnName="SeasonYear" />
           <ScalarProperty Name="SeasonMonth" ColumnName="SeasonMonth" />
           <ScalarProperty Name="Model" ColumnName="Model" />
-          <ScalarProperty Name="Color" ColumnName="Color" />
+          <ScalarProperty Name="Color5" ColumnName="Color5" />
+          <ScalarProperty Name="Color4" ColumnName="Color4" />
+          <ScalarProperty Name="Color3" ColumnName="Color3" />
+          <ScalarProperty Name="Color2" ColumnName="Color2" />
+          <ScalarProperty Name="Color1" ColumnName="Color1" />
           <ScalarProperty Name="Material" ColumnName="Material" />
-          <ScalarProperty Name="Size" ColumnName="Size" />
+          <ScalarProperty Name="SizeL" ColumnName="SizeL" />
+          <ScalarProperty Name="SizeM" ColumnName="SizeM" />
+          <ScalarProperty Name="SizeS" ColumnName="SizeS" />
           <ScalarProperty Name="Category" ColumnName="Category" />
           <ScalarProperty Name="NewPrice" ColumnName="NewPrice" />
           <ScalarProperty Name="Price" ColumnName="Price" />

@@ -2,7 +2,10 @@ using System;
 using AppPracticeService.Data;
 using AppPracticeService.Pattern.DataContext;
 using AppPracticeService.Pattern.Ef6;
+using AppPracticeService.Pattern.Repositories;
 using AppPracticeService.Pattern.UnitOfWork;
+using AppPracticeService.Service.Business;
+using AppPracticeService.Service.IBusiness;
 using Microsoft.Practices.Unity;
 using Microsoft.Practices.Unity.Configuration;
 
@@ -44,9 +47,11 @@ namespace AppPracticeService.App_Start
             container
                 .RegisterType<IDataContextAsync, MarcAppEntities>(new PerRequestLifetimeManager())
                 .RegisterType<IDataContext, MarcAppEntities>(new PerRequestLifetimeManager())
+                .RegisterType<ISpContext, MarcAppEntities>(new PerRequestLifetimeManager())
                 .RegisterType<IUnitOfWork, UnitOfWork>(new PerRequestLifetimeManager())
                 .RegisterType<IUnitOfWorkAsync, UnitOfWork>(new PerRequestLifetimeManager())
-                .RegisterType<ISpContext, MarcAppEntities>(new PerRequestLifetimeManager());
+                .RegisterType<IRepositoryAsync<T_Product>,Repository<T_Product>>()
+                .RegisterType<IProductService,ProductSerivce>();
 
         }
     }

@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="MarcAppModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-  <EntityType Name="City">
+  <EntityType Name="T_City">
     <Key>
       <PropertyRef Name="CityId" />
     </Key>
@@ -10,7 +10,7 @@
     <Property Name="Description" Type="nvarchar" MaxLength="500" />
     <Property Name="Active" Type="bit" />
   </EntityType>
-  <EntityType Name="Order">
+  <EntityType Name="T_Order">
     <Key>
       <PropertyRef Name="OrderId" />
     </Key>
@@ -30,7 +30,7 @@
     <Property Name="ShippingPhone" Type="varchar" MaxLength="50" />
     <Property Name="ShippingAddress" Type="nvarchar" MaxLength="500" />
   </EntityType>
-  <EntityType Name="OrderDetail">
+  <EntityType Name="T_OrderDetail">
     <Key>
       <PropertyRef Name="OrderDetailId" />
     </Key>
@@ -42,7 +42,7 @@
     <Property Name="ProductName" Type="nvarchar" MaxLength="250" />
     <Property Name="ProductCode" Type="varchar" MaxLength="50" />
   </EntityType>
-  <EntityType Name="OrderHistory">
+  <EntityType Name="T_OrderHistory">
     <Key>
       <PropertyRef Name="OrderHistoryId" />
     </Key>
@@ -54,7 +54,7 @@
     <Property Name="Active" Type="bit" />
     <Property Name="HistoryStep" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
   </EntityType>
-  <EntityType Name="OrderStatus">
+  <EntityType Name="T_OrderStatus">
     <Key>
       <PropertyRef Name="OrderStatusId" />
     </Key>
@@ -65,7 +65,7 @@
     <Property Name="Style" Type="varchar" MaxLength="50" />
     <Property Name="Active" Type="bit" />
   </EntityType>
-  <EntityType Name="Picture">
+  <EntityType Name="T_Picture">
     <Key>
       <PropertyRef Name="PictureId" />
     </Key>
@@ -75,8 +75,10 @@
     <Property Name="ContentString" Type="text" />
     <Property Name="ContentBytes" Type="varbinary(max)" />
     <Property Name="Active" Type="bit" />
+    <Property Name="IsProfile" Type="bit" />
+    <Property Name="DisplayOrder" Type="int" />
   </EntityType>
-  <EntityType Name="Product">
+  <EntityType Name="T_Product">
     <Key>
       <PropertyRef Name="ProductId" />
     </Key>
@@ -87,9 +89,15 @@
     <Property Name="Price" Type="float" />
     <Property Name="NewPrice" Type="float" />
     <Property Name="Category" Type="nvarchar" MaxLength="100" />
-    <Property Name="Size" Type="nvarchar" MaxLength="50" />
+    <Property Name="SizeS" Type="nvarchar" MaxLength="50" />
+    <Property Name="SizeM" Type="nvarchar" MaxLength="50" />
+    <Property Name="SizeL" Type="nvarchar" MaxLength="50" />
     <Property Name="Material" Type="nvarchar" MaxLength="50" />
-    <Property Name="Color" Type="nvarchar" MaxLength="50" />
+    <Property Name="Color1" Type="nvarchar" MaxLength="50" />
+    <Property Name="Color2" Type="nvarchar" MaxLength="50" />
+    <Property Name="Color3" Type="nvarchar" MaxLength="50" />
+    <Property Name="Color4" Type="nvarchar" MaxLength="50" />
+    <Property Name="Color5" Type="nvarchar" MaxLength="50" />
     <Property Name="Model" Type="nvarchar" MaxLength="50" />
     <Property Name="SeasonMonth" Type="int" />
     <Property Name="SeasonYear" Type="int" />
@@ -100,108 +108,108 @@
     <Property Name="Active" Type="bit" />
   </EntityType>
   <Association Name="FK_Order_City">
-    <End Role="City" Type="Self.City" Multiplicity="0..1" />
-    <End Role="Order" Type="Self.Order" Multiplicity="*" />
+    <End Role="T_City" Type="Self.T_City" Multiplicity="0..1" />
+    <End Role="T_Order" Type="Self.T_Order" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="City">
+      <Principal Role="T_City">
         <PropertyRef Name="CityId" />
       </Principal>
-      <Dependent Role="Order">
+      <Dependent Role="T_Order">
         <PropertyRef Name="CityId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_OrderDetail_Order">
-    <End Role="Order" Type="Self.Order" Multiplicity="0..1" />
-    <End Role="OrderDetail" Type="Self.OrderDetail" Multiplicity="*" />
+    <End Role="T_Order" Type="Self.T_Order" Multiplicity="0..1" />
+    <End Role="T_OrderDetail" Type="Self.T_OrderDetail" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="Order">
+      <Principal Role="T_Order">
         <PropertyRef Name="OrderId" />
       </Principal>
-      <Dependent Role="OrderDetail">
+      <Dependent Role="T_OrderDetail">
         <PropertyRef Name="OrderId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_OrderDetail_Product">
-    <End Role="Product" Type="Self.Product" Multiplicity="0..1" />
-    <End Role="OrderDetail" Type="Self.OrderDetail" Multiplicity="*" />
+    <End Role="T_Product" Type="Self.T_Product" Multiplicity="0..1" />
+    <End Role="T_OrderDetail" Type="Self.T_OrderDetail" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="Product">
+      <Principal Role="T_Product">
         <PropertyRef Name="ProductId" />
       </Principal>
-      <Dependent Role="OrderDetail">
+      <Dependent Role="T_OrderDetail">
         <PropertyRef Name="ProductId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_OrderHistory_Order">
-    <End Role="Order" Type="Self.Order" Multiplicity="0..1" />
-    <End Role="OrderHistory" Type="Self.OrderHistory" Multiplicity="*" />
+    <End Role="T_Order" Type="Self.T_Order" Multiplicity="0..1" />
+    <End Role="T_OrderHistory" Type="Self.T_OrderHistory" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="Order">
+      <Principal Role="T_Order">
         <PropertyRef Name="OrderId" />
       </Principal>
-      <Dependent Role="OrderHistory">
+      <Dependent Role="T_OrderHistory">
         <PropertyRef Name="OrderId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_OrderHistory_OrderStatus">
-    <End Role="OrderStatus" Type="Self.OrderStatus" Multiplicity="0..1" />
-    <End Role="OrderHistory" Type="Self.OrderHistory" Multiplicity="*" />
+    <End Role="T_OrderStatus" Type="Self.T_OrderStatus" Multiplicity="0..1" />
+    <End Role="T_OrderHistory" Type="Self.T_OrderHistory" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="OrderStatus">
+      <Principal Role="T_OrderStatus">
         <PropertyRef Name="OrderStatusId" />
       </Principal>
-      <Dependent Role="OrderHistory">
+      <Dependent Role="T_OrderHistory">
         <PropertyRef Name="OrderStatusId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_Picture_Product">
-    <End Role="Product" Type="Self.Product" Multiplicity="0..1" />
-    <End Role="Picture" Type="Self.Picture" Multiplicity="*" />
+    <End Role="T_Product" Type="Self.T_Product" Multiplicity="0..1" />
+    <End Role="T_Picture" Type="Self.T_Picture" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="Product">
+      <Principal Role="T_Product">
         <PropertyRef Name="ProductId" />
       </Principal>
-      <Dependent Role="Picture">
+      <Dependent Role="T_Picture">
         <PropertyRef Name="ProductId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
   <EntityContainer Name="MarcAppModelStoreContainer">
-    <EntitySet Name="City" EntityType="Self.City" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="Order" EntityType="Self.Order" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="OrderDetail" EntityType="Self.OrderDetail" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="OrderHistory" EntityType="Self.OrderHistory" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="OrderStatus" EntityType="Self.OrderStatus" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="Picture" EntityType="Self.Picture" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="Product" EntityType="Self.Product" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="T_City" EntityType="Self.T_City" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="T_Order" EntityType="Self.T_Order" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="T_OrderDetail" EntityType="Self.T_OrderDetail" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="T_OrderHistory" EntityType="Self.T_OrderHistory" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="T_OrderStatus" EntityType="Self.T_OrderStatus" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="T_Picture" EntityType="Self.T_Picture" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="T_Product" EntityType="Self.T_Product" Schema="dbo" store:Type="Tables" />
     <AssociationSet Name="FK_Order_City" Association="Self.FK_Order_City">
-      <End Role="City" EntitySet="City" />
-      <End Role="Order" EntitySet="Order" />
+      <End Role="T_City" EntitySet="T_City" />
+      <End Role="T_Order" EntitySet="T_Order" />
     </AssociationSet>
     <AssociationSet Name="FK_OrderDetail_Order" Association="Self.FK_OrderDetail_Order">
-      <End Role="Order" EntitySet="Order" />
-      <End Role="OrderDetail" EntitySet="OrderDetail" />
+      <End Role="T_Order" EntitySet="T_Order" />
+      <End Role="T_OrderDetail" EntitySet="T_OrderDetail" />
     </AssociationSet>
     <AssociationSet Name="FK_OrderDetail_Product" Association="Self.FK_OrderDetail_Product">
-      <End Role="Product" EntitySet="Product" />
-      <End Role="OrderDetail" EntitySet="OrderDetail" />
+      <End Role="T_Product" EntitySet="T_Product" />
+      <End Role="T_OrderDetail" EntitySet="T_OrderDetail" />
     </AssociationSet>
     <AssociationSet Name="FK_OrderHistory_Order" Association="Self.FK_OrderHistory_Order">
-      <End Role="Order" EntitySet="Order" />
-      <End Role="OrderHistory" EntitySet="OrderHistory" />
+      <End Role="T_Order" EntitySet="T_Order" />
+      <End Role="T_OrderHistory" EntitySet="T_OrderHistory" />
     </AssociationSet>
     <AssociationSet Name="FK_OrderHistory_OrderStatus" Association="Self.FK_OrderHistory_OrderStatus">
-      <End Role="OrderStatus" EntitySet="OrderStatus" />
-      <End Role="OrderHistory" EntitySet="OrderHistory" />
+      <End Role="T_OrderStatus" EntitySet="T_OrderStatus" />
+      <End Role="T_OrderHistory" EntitySet="T_OrderHistory" />
     </AssociationSet>
     <AssociationSet Name="FK_Picture_Product" Association="Self.FK_Picture_Product">
-      <End Role="Product" EntitySet="Product" />
-      <End Role="Picture" EntitySet="Picture" />
+      <End Role="T_Product" EntitySet="T_Product" />
+      <End Role="T_Picture" EntitySet="T_Picture" />
     </AssociationSet>
   </EntityContainer>
 </Schema>

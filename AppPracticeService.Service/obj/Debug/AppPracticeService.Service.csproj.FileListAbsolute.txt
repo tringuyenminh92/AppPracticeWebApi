@@ -40,3 +40,5 @@ C:\Users\UR81HC\Documents\visual studio 2013\Projects\AppPracticeWebApi\AppPract
 C:\Users\UR81HC\Documents\visual studio 2013\Projects\AppPracticeWebApi\AppPracticeService.Service\obj\Debug\AppPracticeService.Service.csprojResolveAssemblyReference.cache
 C:\Users\UR81HC\Documents\visual studio 2013\Projects\AppPracticeWebApi\AppPracticeService.Service\obj\Debug\AppPracticeService.Service.dll
 C:\Users\UR81HC\Documents\visual studio 2013\Projects\AppPracticeWebApi\AppPracticeService.Service\obj\Debug\AppPracticeService.Service.pdb
+C:\Users\BeGa\Documents\Visual Studio 2013\Projects\AppPracticeWebApi\AppPracticeService.Service\bin\Debug\log4net.dll
+C:\Users\BeGa\Documents\Visual Studio 2013\Projects\AppPracticeWebApi\AppPracticeService.Service\bin\Debug\log4net.xml

@@ -7,13 +7,12 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-using AppPracticeService.Pattern.Ef6;
-
 namespace AppPracticeService.Data
 {
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
+    using AppPracticeService.Pattern.Ef6;
     
     public partial class MarcAppEntities : DataContext
     {
@@ -27,12 +26,12 @@ namespace AppPracticeService.Data
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Picture> Pictures { get; set; }
-        public virtual DbSet<City> Cities { get; set; }
-        public virtual DbSet<Order> Orders { get; set; }
-        public virtual DbSet<OrderDetail> OrderDetails { get; set; }
-        public virtual DbSet<OrderHistory> OrderHistories { get; set; }
-        public virtual DbSet<OrderStatu> OrderStatus { get; set; }
-        public virtual DbSet<Product> Products { get; set; }
+        public virtual DbSet<T_City> T_City { get; set; }
+        public virtual DbSet<T_Order> T_Order { get; set; }
+        public virtual DbSet<T_OrderDetail> T_OrderDetail { get; set; }
+        public virtual DbSet<T_OrderHistory> T_OrderHistory { get; set; }
+        public virtual DbSet<T_OrderStatus> T_OrderStatus { get; set; }
+        public virtual DbSet<T_Picture> T_Picture { get; set; }
+        public virtual DbSet<T_Product> T_Product { get; set; }
     }
 }

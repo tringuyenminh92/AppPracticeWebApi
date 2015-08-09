@@ -50,9 +50,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="City.cs">
-      <DependentUpon>MarcData.tt</DependentUpon>
-    </Compile>
     <Compile Include="ISpContext.cs" />
     <Compile Include="MarcData.Context.cs">
       <AutoGen>True</AutoGen>
@@ -69,34 +66,37 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>MarcData.edmx</DependentUpon>
     </Compile>
-    <Compile Include="Order.cs">
-      <DependentUpon>MarcData.tt</DependentUpon>
-    </Compile>
-    <Compile Include="OrderDetail.cs">
-      <DependentUpon>MarcData.tt</DependentUpon>
-    </Compile>
-    <Compile Include="OrderHistory.cs">
-      <DependentUpon>MarcData.tt</DependentUpon>
-    </Compile>
-    <Compile Include="OrderStatu.cs">
-      <DependentUpon>MarcData.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Picture.cs">
-      <DependentUpon>MarcData.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Product.cs">
-      <DependentUpon>MarcData.tt</DependentUpon>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SpContext.cs" />
+    <Compile Include="T_City.cs">
+      <DependentUpon>MarcData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="T_Order.cs">
+      <DependentUpon>MarcData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="T_OrderDetail.cs">
+      <DependentUpon>MarcData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="T_OrderHistory.cs">
+      <DependentUpon>MarcData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="T_OrderStatus.cs">
+      <DependentUpon>MarcData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="T_Picture.cs">
+      <DependentUpon>MarcData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="T_Product.cs">
+      <DependentUpon>MarcData.tt</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.Config" />
-    <None Include="Data\MarcApp.bak" />
     <EntityDeploy Include="MarcData.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>MarcData.Designer.cs</LastGenOutput>
     </EntityDeploy>
+    <None Include="Data\MarcApp.rar" />
     <None Include="MarcData.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>MarcData.edmx</DependentUpon>

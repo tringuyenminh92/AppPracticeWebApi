@@ -156,3 +156,16 @@ C:\Users\UR81HC\Documents\visual studio 2013\Projects\AppPracticeWebApi\AppPract
 C:\Users\UR81HC\Documents\visual studio 2013\Projects\AppPracticeWebApi\AppPracticeService\obj\Debug\AppPracticeService.csprojResolveAssemblyReference.cache
 C:\Users\UR81HC\Documents\visual studio 2013\Projects\AppPracticeWebApi\AppPracticeService\obj\Debug\AppPracticeService.dll
 C:\Users\UR81HC\Documents\visual studio 2013\Projects\AppPracticeWebApi\AppPracticeService\obj\Debug\AppPracticeService.pdb
+C:\Users\BeGa\Documents\Visual Studio 2013\Projects\AppPracticeWebApi\AppPracticeService\bin\log4net.dll
+C:\Users\BeGa\Documents\Visual Studio 2013\Projects\AppPracticeWebApi\AppPracticeService\bin\Microsoft.Practices.Unity.Configuration.dll
+C:\Users\BeGa\Documents\Visual Studio 2013\Projects\AppPracticeWebApi\AppPracticeService\bin\Microsoft.Practices.Unity.dll
+C:\Users\BeGa\Documents\Visual Studio 2013\Projects\AppPracticeWebApi\AppPracticeService\bin\Microsoft.Practices.Unity.Mvc.dll
+C:\Users\BeGa\Documents\Visual Studio 2013\Projects\AppPracticeWebApi\AppPracticeService\bin\Microsoft.Practices.Unity.RegistrationByConvention.dll
+C:\Users\BeGa\Documents\Visual Studio 2013\Projects\AppPracticeWebApi\AppPracticeService\bin\Microsoft.Practices.Unity.WebApi.dll
+C:\Users\BeGa\Documents\Visual Studio 2013\Projects\AppPracticeWebApi\AppPracticeService\bin\WebActivatorEx.dll
+C:\Users\BeGa\Documents\Visual Studio 2013\Projects\AppPracticeWebApi\AppPracticeService\bin\log4net.xml
+C:\Users\BeGa\Documents\Visual Studio 2013\Projects\AppPracticeWebApi\AppPracticeService\bin\Microsoft.Practices.Unity.xml
+C:\Users\BeGa\Documents\Visual Studio 2013\Projects\AppPracticeWebApi\AppPracticeService\bin\Microsoft.Practices.Unity.Configuration.xml
+C:\Users\BeGa\Documents\Visual Studio 2013\Projects\AppPracticeWebApi\AppPracticeService\bin\Microsoft.Practices.Unity.Mvc.xml
+C:\Users\BeGa\Documents\Visual Studio 2013\Projects\AppPracticeWebApi\AppPracticeService\bin\Microsoft.Practices.Unity.RegistrationByConvention.xml
+C:\Users\BeGa\Documents\Visual Studio 2013\Projects\AppPracticeWebApi\AppPracticeService\bin\Microsoft.Practices.Unity.WebApi.xml
