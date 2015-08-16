@@ -6,3 +6,4 @@ C:\Users\UR81HC\Documents\visual studio 2013\Projects\AppPracticeWebApi\AppPract
 C:\Users\UR81HC\Documents\visual studio 2013\Projects\AppPracticeWebApi\AppPracticeService.Models\bin\Debug\AppPracticeService.Models.pdb
 C:\Users\UR81HC\Documents\visual studio 2013\Projects\AppPracticeWebApi\AppPracticeService.Models\obj\Debug\AppPracticeService.Models.dll
 C:\Users\UR81HC\Documents\visual studio 2013\Projects\AppPracticeWebApi\AppPracticeService.Models\obj\Debug\AppPracticeService.Models.pdb
+C:\Users\BeGa\Documents\Visual Studio 2013\Projects\AppPracticeWebApi\AppPracticeService.Models\obj\Debug\AppPracticeService.Models.csprojResolveAssemblyReference.cache

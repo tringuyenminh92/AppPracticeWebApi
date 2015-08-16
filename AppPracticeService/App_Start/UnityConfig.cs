@@ -7,7 +7,6 @@ using AppPracticeService.Pattern.UnitOfWork;
 using AppPracticeService.Service.Business;
 using AppPracticeService.Service.IBusiness;
 using Microsoft.Practices.Unity;
-using Microsoft.Practices.Unity.Configuration;
 
 namespace AppPracticeService.App_Start
 {
