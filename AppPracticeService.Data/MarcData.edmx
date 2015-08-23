@@ -5,6 +5,45 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="MarcAppModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Category">
+          <Key>
+            <PropertyRef Name="CategoryId" />
+          </Key>
+          <Property Name="CategoryId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="CategoryName" Type="nvarchar" MaxLength="100" />
+          <Property Name="CategoryImageString" Type="varchar(max)" />
+          <Property Name="CategoryImageBytes" Type="varbinary(max)" />
+          <Property Name="CreatedBy" Type="int" />
+          <Property Name="CreatedDate" Type="date" />
+          <Property Name="ModifiedBy" Type="int" />
+          <Property Name="ModifiedDate" Type="date" />
+          <Property Name="Active" Type="bit" />
+        </EntityType>
+        <EntityType Name="Color">
+          <Key>
+            <PropertyRef Name="ColorId" />
+          </Key>
+          <Property Name="ColorId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="ColorName" Type="nvarchar" MaxLength="50" />
+          <Property Name="ColorValue" Type="varchar" MaxLength="50" />
+          <Property Name="CreatedDate" Type="date" />
+          <Property Name="ModifiedDate" Type="date" />
+          <Property Name="Active" Type="bit" />
+        </EntityType>
+        <EntityType Name="Size">
+          <Key>
+            <PropertyRef Name="SizeId" />
+          </Key>
+          <Property Name="SizeId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="SizeCode" Type="nchar" MaxLength="10" />
+          <Property Name="SizeName" Type="nvarchar" MaxLength="50" />
+          <Property Name="SizeType" Type="nvarchar" MaxLength="50" />
+          <Property Name="SizeGroup" Type="nvarchar" MaxLength="50" />
+          <Property Name="FontSize" Type="int" />
+          <Property Name="CreatedDate" Type="date" />
+          <Property Name="ModifiedDate" Type="date" />
+          <Property Name="Active" Type="bit" />
+        </EntityType>
         <EntityType Name="T_City">
           <Key>
             <PropertyRef Name="CityId" />
@@ -46,6 +85,7 @@
           <Property Name="ProductPrice" Type="float" />
           <Property Name="ProductName" Type="nvarchar" MaxLength="250" />
           <Property Name="ProductCode" Type="varchar" MaxLength="50" />
+          <Property Name="OrderQuantity" Type="int" />
         </EntityType>
         <EntityType Name="T_OrderHistory">
           <Key>
@@ -76,7 +116,6 @@
           </Key>
           <Property Name="PictureId" Type="uniqueidentifier" Nullable="false" />
           <Property Name="ProductId" Type="uniqueidentifier" />
-          <Property Name="ProductColor" Type="nvarchar" MaxLength="50" />
           <Property Name="ContentString" Type="text" />
           <Property Name="ContentBytes" Type="varbinary(max)" />
           <Property Name="Active" Type="bit" />
@@ -93,16 +132,10 @@
           <Property Name="Description" Type="nvarchar" MaxLength="500" />
           <Property Name="Price" Type="float" />
           <Property Name="NewPrice" Type="float" />
-          <Property Name="Category" Type="nvarchar" MaxLength="100" />
-          <Property Name="SizeS" Type="nvarchar" MaxLength="50" />
-          <Property Name="SizeM" Type="nvarchar" MaxLength="50" />
-          <Property Name="SizeL" Type="nvarchar" MaxLength="50" />
+          <Property Name="CategoryId" Type="uniqueidentifier" />
+          <Property Name="SizeId" Type="uniqueidentifier" />
           <Property Name="Material" Type="nvarchar" MaxLength="50" />
-          <Property Name="Color1" Type="nvarchar" MaxLength="50" />
-          <Property Name="Color2" Type="nvarchar" MaxLength="50" />
-          <Property Name="Color3" Type="nvarchar" MaxLength="50" />
-          <Property Name="Color4" Type="nvarchar" MaxLength="50" />
-          <Property Name="Color5" Type="nvarchar" MaxLength="50" />
+          <Property Name="ColorId" Type="uniqueidentifier" />
           <Property Name="Model" Type="nvarchar" MaxLength="50" />
           <Property Name="SeasonMonth" Type="int" />
           <Property Name="SeasonYear" Type="int" />
@@ -111,6 +144,7 @@
           <Property Name="ModifiedDate" Type="date" />
           <Property Name="ModifiedBy" Type="int" />
           <Property Name="Active" Type="bit" />
+          <Property Name="Quantity" Type="int" />
         </EntityType>
         <Association Name="FK_Order_City">
           <End Role="T_City" Type="Self.T_City" Multiplicity="0..1" />
@@ -184,7 +218,46 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_T_Product_Category">
+          <End Role="Category" Type="Self.Category" Multiplicity="0..1" />
+          <End Role="T_Product" Type="Self.T_Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="CategoryId" />
+            </Principal>
+            <Dependent Role="T_Product">
+              <PropertyRef Name="CategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_T_Product_Color">
+          <End Role="Color" Type="Self.Color" Multiplicity="0..1" />
+          <End Role="T_Product" Type="Self.T_Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Color">
+              <PropertyRef Name="ColorId" />
+            </Principal>
+            <Dependent Role="T_Product">
+              <PropertyRef Name="ColorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_T_Product_Size">
+          <End Role="Size" Type="Self.Size" Multiplicity="0..1" />
+          <End Role="T_Product" Type="Self.T_Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Size">
+              <PropertyRef Name="SizeId" />
+            </Principal>
+            <Dependent Role="T_Product">
+              <PropertyRef Name="SizeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="MarcAppModelStoreContainer">
+          <EntitySet Name="Category" EntityType="Self.Category" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Color" EntityType="Self.Color" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Size" EntityType="Self.Size" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="T_City" EntityType="Self.T_City" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="T_Order" EntityType="Self.T_Order" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="T_OrderDetail" EntityType="Self.T_OrderDetail" Schema="dbo" store:Type="Tables" />
@@ -216,12 +289,27 @@
             <End Role="T_Product" EntitySet="T_Product" />
             <End Role="T_Picture" EntitySet="T_Picture" />
           </AssociationSet>
+          <AssociationSet Name="FK_T_Product_Category" Association="Self.FK_T_Product_Category">
+            <End Role="Category" EntitySet="Category" />
+            <End Role="T_Product" EntitySet="T_Product" />
+          </AssociationSet>
+          <AssociationSet Name="FK_T_Product_Color" Association="Self.FK_T_Product_Color">
+            <End Role="Color" EntitySet="Color" />
+            <End Role="T_Product" EntitySet="T_Product" />
+          </AssociationSet>
+          <AssociationSet Name="FK_T_Product_Size" Association="Self.FK_T_Product_Size">
+            <End Role="Size" EntitySet="Size" />
+            <End Role="T_Product" EntitySet="T_Product" />
+          </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="MarcAppModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="MarcAppEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Categories" EntityType="MarcAppModel.Category" />
+          <EntitySet Name="Colors" EntityType="MarcAppModel.Color" />
+          <EntitySet Name="Sizes" EntityType="MarcAppModel.Size" />
           <EntitySet Name="T_City" EntityType="MarcAppModel.T_City" />
           <EntitySet Name="T_Order" EntityType="MarcAppModel.T_Order" />
           <EntitySet Name="T_OrderDetail" EntityType="MarcAppModel.T_OrderDetail" />
@@ -229,6 +317,18 @@
           <EntitySet Name="T_OrderStatus" EntityType="MarcAppModel.T_OrderStatus" />
           <EntitySet Name="T_Picture" EntityType="MarcAppModel.T_Picture" />
           <EntitySet Name="T_Product" EntityType="MarcAppModel.T_Product" />
+          <AssociationSet Name="FK_T_Product_Category" Association="MarcAppModel.FK_T_Product_Category">
+            <End Role="Category" EntitySet="Categories" />
+            <End Role="T_Product" EntitySet="T_Product" />
+          </AssociationSet>
+          <AssociationSet Name="FK_T_Product_Color" Association="MarcAppModel.FK_T_Product_Color">
+            <End Role="Color" EntitySet="Colors" />
+            <End Role="T_Product" EntitySet="T_Product" />
+          </AssociationSet>
+          <AssociationSet Name="FK_T_Product_Size" Association="MarcAppModel.FK_T_Product_Size">
+            <End Role="Size" EntitySet="Sizes" />
+            <End Role="T_Product" EntitySet="T_Product" />
+          </AssociationSet>
           <AssociationSet Name="FK_Order_City" Association="MarcAppModel.FK_Order_City">
             <End Role="T_City" EntitySet="T_City" />
             <End Role="T_Order" EntitySet="T_Order" />
@@ -254,6 +354,48 @@
             <End Role="T_Picture" EntitySet="T_Picture" />
           </AssociationSet>
         </EntityContainer>
+        <EntityType Name="Category">
+          <Key>
+            <PropertyRef Name="CategoryId" />
+          </Key>
+          <Property Name="CategoryId" Type="Guid" Nullable="false" />
+          <Property Name="CategoryName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="CategoryImageString" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="CategoryImageBytes" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="CreatedBy" Type="Int32" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="0" />
+          <Property Name="ModifiedBy" Type="Int32" />
+          <Property Name="ModifiedDate" Type="DateTime" Precision="0" />
+          <Property Name="Active" Type="Boolean" />
+          <NavigationProperty Name="T_Product" Relationship="MarcAppModel.FK_T_Product_Category" FromRole="Category" ToRole="T_Product" />
+        </EntityType>
+        <EntityType Name="Color">
+          <Key>
+            <PropertyRef Name="ColorId" />
+          </Key>
+          <Property Name="ColorId" Type="Guid" Nullable="false" />
+          <Property Name="ColorName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ColorValue" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="0" />
+          <Property Name="ModifiedDate" Type="DateTime" Precision="0" />
+          <Property Name="Active" Type="Boolean" />
+          <NavigationProperty Name="T_Product" Relationship="MarcAppModel.FK_T_Product_Color" FromRole="Color" ToRole="T_Product" />
+        </EntityType>
+        <EntityType Name="Size">
+          <Key>
+            <PropertyRef Name="SizeId" />
+          </Key>
+          <Property Name="SizeId" Type="Guid" Nullable="false" />
+          <Property Name="SizeCode" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="SizeName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SizeType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SizeGroup" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FontSize" Type="Int32" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="0" />
+          <Property Name="ModifiedDate" Type="DateTime" Precision="0" />
+          <Property Name="Active" Type="Boolean" />
+          <NavigationProperty Name="T_Product" Relationship="MarcAppModel.FK_T_Product_Size" FromRole="Size" ToRole="T_Product" />
+        </EntityType>
         <EntityType Name="T_City">
           <Key>
             <PropertyRef Name="CityId" />
@@ -299,6 +441,7 @@
           <Property Name="ProductPrice" Type="Double" />
           <Property Name="ProductName" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
           <Property Name="ProductCode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="OrderQuantity" Type="Int32" />
           <NavigationProperty Name="T_Order" Relationship="MarcAppModel.FK_OrderDetail_Order" FromRole="T_OrderDetail" ToRole="T_Order" />
           <NavigationProperty Name="T_Product" Relationship="MarcAppModel.FK_OrderDetail_Product" FromRole="T_OrderDetail" ToRole="T_Product" />
         </EntityType>
@@ -334,7 +477,6 @@
           </Key>
           <Property Name="PictureId" Type="Guid" Nullable="false" />
           <Property Name="ProductId" Type="Guid" />
-          <Property Name="ProductColor" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="ContentString" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="ContentBytes" Type="Binary" MaxLength="Max" FixedLength="false" />
           <Property Name="Active" Type="Boolean" />
@@ -352,16 +494,10 @@
           <Property Name="Description" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
           <Property Name="Price" Type="Double" />
           <Property Name="NewPrice" Type="Double" />
-          <Property Name="Category" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="SizeS" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="SizeM" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="SizeL" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CategoryId" Type="Guid" />
+          <Property Name="SizeId" Type="Guid" />
           <Property Name="Material" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Color1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Color2" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Color3" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Color4" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Color5" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ColorId" Type="Guid" />
           <Property Name="Model" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="SeasonMonth" Type="Int32" />
           <Property Name="SeasonYear" Type="Int32" />
@@ -370,9 +506,49 @@
           <Property Name="ModifiedDate" Type="DateTime" Precision="0" />
           <Property Name="ModifiedBy" Type="Int32" />
           <Property Name="Active" Type="Boolean" />
+          <Property Name="Quantity" Type="Int32" />
+          <NavigationProperty Name="Category" Relationship="MarcAppModel.FK_T_Product_Category" FromRole="T_Product" ToRole="Category" />
+          <NavigationProperty Name="Color" Relationship="MarcAppModel.FK_T_Product_Color" FromRole="T_Product" ToRole="Color" />
+          <NavigationProperty Name="Size" Relationship="MarcAppModel.FK_T_Product_Size" FromRole="T_Product" ToRole="Size" />
           <NavigationProperty Name="T_OrderDetail" Relationship="MarcAppModel.FK_OrderDetail_Product" FromRole="T_Product" ToRole="T_OrderDetail" />
           <NavigationProperty Name="T_Picture" Relationship="MarcAppModel.FK_Picture_Product" FromRole="T_Product" ToRole="T_Picture" />
         </EntityType>
+        <Association Name="FK_T_Product_Category">
+          <End Type="MarcAppModel.Category" Role="Category" Multiplicity="0..1" />
+          <End Type="MarcAppModel.T_Product" Role="T_Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="CategoryId" />
+            </Principal>
+            <Dependent Role="T_Product">
+              <PropertyRef Name="CategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_T_Product_Color">
+          <End Type="MarcAppModel.Color" Role="Color" Multiplicity="0..1" />
+          <End Type="MarcAppModel.T_Product" Role="T_Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Color">
+              <PropertyRef Name="ColorId" />
+            </Principal>
+            <Dependent Role="T_Product">
+              <PropertyRef Name="ColorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_T_Product_Size">
+          <End Type="MarcAppModel.Size" Role="Size" Multiplicity="0..1" />
+          <End Type="MarcAppModel.T_Product" Role="T_Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Size">
+              <PropertyRef Name="SizeId" />
+            </Principal>
+            <Dependent Role="T_Product">
+              <PropertyRef Name="SizeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Order_City">
           <End Type="MarcAppModel.T_City" Role="T_City" Multiplicity="0..1" />
           <End Type="MarcAppModel.T_Order" Role="T_Order" Multiplicity="*" />
@@ -451,6 +627,48 @@
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="MarcAppModelStoreContainer" CdmEntityContainer="MarcAppEntities">
+          <EntitySetMapping Name="Categories">
+            <EntityTypeMapping TypeName="MarcAppModel.Category">
+              <MappingFragment StoreEntitySet="Category">
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CategoryImageBytes" ColumnName="CategoryImageBytes" />
+                <ScalarProperty Name="CategoryImageString" ColumnName="CategoryImageString" />
+                <ScalarProperty Name="CategoryName" ColumnName="CategoryName" />
+                <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Colors">
+            <EntityTypeMapping TypeName="MarcAppModel.Color">
+              <MappingFragment StoreEntitySet="Color">
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="ColorValue" ColumnName="ColorValue" />
+                <ScalarProperty Name="ColorName" ColumnName="ColorName" />
+                <ScalarProperty Name="ColorId" ColumnName="ColorId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Sizes">
+            <EntityTypeMapping TypeName="MarcAppModel.Size">
+              <MappingFragment StoreEntitySet="Size">
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="FontSize" ColumnName="FontSize" />
+                <ScalarProperty Name="SizeGroup" ColumnName="SizeGroup" />
+                <ScalarProperty Name="SizeType" ColumnName="SizeType" />
+                <ScalarProperty Name="SizeName" ColumnName="SizeName" />
+                <ScalarProperty Name="SizeCode" ColumnName="SizeCode" />
+                <ScalarProperty Name="SizeId" ColumnName="SizeId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="T_City">
             <EntityTypeMapping TypeName="MarcAppModel.T_City">
               <MappingFragment StoreEntitySet="T_City">
@@ -486,6 +704,7 @@
           <EntitySetMapping Name="T_OrderDetail">
             <EntityTypeMapping TypeName="MarcAppModel.T_OrderDetail">
               <MappingFragment StoreEntitySet="T_OrderDetail">
+                <ScalarProperty Name="OrderQuantity" ColumnName="OrderQuantity" />
                 <ScalarProperty Name="ProductCode" ColumnName="ProductCode" />
                 <ScalarProperty Name="ProductName" ColumnName="ProductName" />
                 <ScalarProperty Name="ProductPrice" ColumnName="ProductPrice" />
@@ -529,7 +748,6 @@
                 <ScalarProperty Name="Active" ColumnName="Active" />
                 <ScalarProperty Name="ContentBytes" ColumnName="ContentBytes" />
                 <ScalarProperty Name="ContentString" ColumnName="ContentString" />
-                <ScalarProperty Name="ProductColor" ColumnName="ProductColor" />
                 <ScalarProperty Name="ProductId" ColumnName="ProductId" />
                 <ScalarProperty Name="PictureId" ColumnName="PictureId" />
               </MappingFragment>
@@ -538,6 +756,7 @@
           <EntitySetMapping Name="T_Product">
             <EntityTypeMapping TypeName="MarcAppModel.T_Product">
               <MappingFragment StoreEntitySet="T_Product">
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
                 <ScalarProperty Name="Active" ColumnName="Active" />
                 <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
                 <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
@@ -546,16 +765,10 @@
                 <ScalarProperty Name="SeasonYear" ColumnName="SeasonYear" />
                 <ScalarProperty Name="SeasonMonth" ColumnName="SeasonMonth" />
                 <ScalarProperty Name="Model" ColumnName="Model" />
-                <ScalarProperty Name="Color5" ColumnName="Color5" />
-                <ScalarProperty Name="Color4" ColumnName="Color4" />
-                <ScalarProperty Name="Color3" ColumnName="Color3" />
-                <ScalarProperty Name="Color2" ColumnName="Color2" />
-                <ScalarProperty Name="Color1" ColumnName="Color1" />
+                <ScalarProperty Name="ColorId" ColumnName="ColorId" />
                 <ScalarProperty Name="Material" ColumnName="Material" />
-                <ScalarProperty Name="SizeL" ColumnName="SizeL" />
-                <ScalarProperty Name="SizeM" ColumnName="SizeM" />
-                <ScalarProperty Name="SizeS" ColumnName="SizeS" />
-                <ScalarProperty Name="Category" ColumnName="Category" />
+                <ScalarProperty Name="SizeId" ColumnName="SizeId" />
+                <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
                 <ScalarProperty Name="NewPrice" ColumnName="NewPrice" />
                 <ScalarProperty Name="Price" ColumnName="Price" />
                 <ScalarProperty Name="Description" ColumnName="Description" />

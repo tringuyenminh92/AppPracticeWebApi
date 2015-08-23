@@ -13,16 +13,20 @@ namespace AppPracticeService.Data
     using System.Collections.Generic;
     
     using AppPracticeService.Pattern.Ef6;
-    public partial class T_Picture : Entity
+    public partial class Color : Entity
     {
-        public System.Guid PictureId { get; set; }
-        public Nullable<System.Guid> ProductId { get; set; }
-        public string ContentString { get; set; }
-        public byte[] ContentBytes { get; set; }
-        public Nullable<bool> Active { get; set; }
-        public Nullable<bool> IsProfile { get; set; }
-        public Nullable<int> DisplayOrder { get; set; }
+        public Color()
+        {
+            this.T_Product = new HashSet<T_Product>();
+        }
     
-        public virtual T_Product T_Product { get; set; }
+        public System.Guid ColorId { get; set; }
+        public string ColorName { get; set; }
+        public string ColorValue { get; set; }
+        public Nullable<System.DateTime> CreatedDate { get; set; }
+        public Nullable<System.DateTime> ModifiedDate { get; set; }
+        public Nullable<bool> Active { get; set; }
+    
+        public virtual ICollection<T_Product> T_Product { get; set; }
     }
 }

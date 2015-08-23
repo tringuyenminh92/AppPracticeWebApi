@@ -5,13 +5,19 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="fce8370962f0484d98a5e5d30e91d052" Name="Diagram1" ZoomLevel="75">
-        <EntityTypeShape EntityType="MarcAppModel.T_City" Width="1.5" PointX="0.75" PointY="4.875" />
-        <EntityTypeShape EntityType="MarcAppModel.T_Order" Width="1.5" PointX="3" PointY="3.75" />
-        <EntityTypeShape EntityType="MarcAppModel.T_OrderDetail" Width="1.5" PointX="5.25" PointY="4.5" />
-        <EntityTypeShape EntityType="MarcAppModel.T_OrderHistory" Width="1.5" PointX="8.25" PointY="4.5" />
-        <EntityTypeShape EntityType="MarcAppModel.T_OrderStatus" Width="1.5" PointX="6" PointY="0.75" />
-        <EntityTypeShape EntityType="MarcAppModel.T_Picture" Width="1.5" PointX="5.25" PointY="11.5" />
-        <EntityTypeShape EntityType="MarcAppModel.T_Product" Width="1.5" PointX="3" PointY="9.875" />
+        <EntityTypeShape EntityType="MarcAppModel.Category" Width="1.5" PointX="0.75" PointY="8.875" />
+        <EntityTypeShape EntityType="MarcAppModel.Color" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="MarcAppModel.Size" Width="1.5" PointX="0.75" PointY="4.25" />
+        <EntityTypeShape EntityType="MarcAppModel.T_City" Width="1.5" PointX="3.75" PointY="10.75" />
+        <EntityTypeShape EntityType="MarcAppModel.T_Order" Width="1.5" PointX="6" PointY="9.5" />
+        <EntityTypeShape EntityType="MarcAppModel.T_OrderDetail" Width="1.5" PointX="8.25" PointY="4.25" />
+        <EntityTypeShape EntityType="MarcAppModel.T_OrderHistory" Width="1.5" PointX="8.25" PointY="10.375" />
+        <EntityTypeShape EntityType="MarcAppModel.T_OrderStatus" Width="1.5" PointX="6" PointY="15.625" />
+        <EntityTypeShape EntityType="MarcAppModel.T_Picture" Width="1.5" PointX="5.25" PointY="4.5" />
+        <EntityTypeShape EntityType="MarcAppModel.T_Product" Width="1.5" PointX="3" PointY="3" />
+        <AssociationConnector Association="MarcAppModel.FK_T_Product_Category" />
+        <AssociationConnector Association="MarcAppModel.FK_T_Product_Color" />
+        <AssociationConnector Association="MarcAppModel.FK_T_Product_Size" />
         <AssociationConnector Association="MarcAppModel.FK_Order_City" />
         <AssociationConnector Association="MarcAppModel.FK_OrderDetail_Order" />
         <AssociationConnector Association="MarcAppModel.FK_OrderHistory_Order" />

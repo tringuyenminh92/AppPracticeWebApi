@@ -1,5 +1,44 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="MarcAppModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Category">
+    <Key>
+      <PropertyRef Name="CategoryId" />
+    </Key>
+    <Property Name="CategoryId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="CategoryName" Type="nvarchar" MaxLength="100" />
+    <Property Name="CategoryImageString" Type="varchar(max)" />
+    <Property Name="CategoryImageBytes" Type="varbinary(max)" />
+    <Property Name="CreatedBy" Type="int" />
+    <Property Name="CreatedDate" Type="date" />
+    <Property Name="ModifiedBy" Type="int" />
+    <Property Name="ModifiedDate" Type="date" />
+    <Property Name="Active" Type="bit" />
+  </EntityType>
+  <EntityType Name="Color">
+    <Key>
+      <PropertyRef Name="ColorId" />
+    </Key>
+    <Property Name="ColorId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="ColorName" Type="nvarchar" MaxLength="50" />
+    <Property Name="ColorValue" Type="varchar" MaxLength="50" />
+    <Property Name="CreatedDate" Type="date" />
+    <Property Name="ModifiedDate" Type="date" />
+    <Property Name="Active" Type="bit" />
+  </EntityType>
+  <EntityType Name="Size">
+    <Key>
+      <PropertyRef Name="SizeId" />
+    </Key>
+    <Property Name="SizeId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="SizeCode" Type="nchar" MaxLength="10" />
+    <Property Name="SizeName" Type="nvarchar" MaxLength="50" />
+    <Property Name="SizeType" Type="nvarchar" MaxLength="50" />
+    <Property Name="SizeGroup" Type="nvarchar" MaxLength="50" />
+    <Property Name="FontSize" Type="int" />
+    <Property Name="CreatedDate" Type="date" />
+    <Property Name="ModifiedDate" Type="date" />
+    <Property Name="Active" Type="bit" />
+  </EntityType>
   <EntityType Name="T_City">
     <Key>
       <PropertyRef Name="CityId" />
@@ -41,6 +80,7 @@
     <Property Name="ProductPrice" Type="float" />
     <Property Name="ProductName" Type="nvarchar" MaxLength="250" />
     <Property Name="ProductCode" Type="varchar" MaxLength="50" />
+    <Property Name="OrderQuantity" Type="int" />
   </EntityType>
   <EntityType Name="T_OrderHistory">
     <Key>
@@ -71,7 +111,6 @@
     </Key>
     <Property Name="PictureId" Type="uniqueidentifier" Nullable="false" />
     <Property Name="ProductId" Type="uniqueidentifier" />
-    <Property Name="ProductColor" Type="nvarchar" MaxLength="50" />
     <Property Name="ContentString" Type="text" />
     <Property Name="ContentBytes" Type="varbinary(max)" />
     <Property Name="Active" Type="bit" />
@@ -88,16 +127,10 @@
     <Property Name="Description" Type="nvarchar" MaxLength="500" />
     <Property Name="Price" Type="float" />
     <Property Name="NewPrice" Type="float" />
-    <Property Name="Category" Type="nvarchar" MaxLength="100" />
-    <Property Name="SizeS" Type="nvarchar" MaxLength="50" />
-    <Property Name="SizeM" Type="nvarchar" MaxLength="50" />
-    <Property Name="SizeL" Type="nvarchar" MaxLength="50" />
+    <Property Name="CategoryId" Type="uniqueidentifier" />
+    <Property Name="SizeId" Type="uniqueidentifier" />
     <Property Name="Material" Type="nvarchar" MaxLength="50" />
-    <Property Name="Color1" Type="nvarchar" MaxLength="50" />
-    <Property Name="Color2" Type="nvarchar" MaxLength="50" />
-    <Property Name="Color3" Type="nvarchar" MaxLength="50" />
-    <Property Name="Color4" Type="nvarchar" MaxLength="50" />
-    <Property Name="Color5" Type="nvarchar" MaxLength="50" />
+    <Property Name="ColorId" Type="uniqueidentifier" />
     <Property Name="Model" Type="nvarchar" MaxLength="50" />
     <Property Name="SeasonMonth" Type="int" />
     <Property Name="SeasonYear" Type="int" />
@@ -106,6 +139,7 @@
     <Property Name="ModifiedDate" Type="date" />
     <Property Name="ModifiedBy" Type="int" />
     <Property Name="Active" Type="bit" />
+    <Property Name="Quantity" Type="int" />
   </EntityType>
   <Association Name="FK_Order_City">
     <End Role="T_City" Type="Self.T_City" Multiplicity="0..1" />
@@ -179,7 +213,46 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_T_Product_Category">
+    <End Role="Category" Type="Self.Category" Multiplicity="0..1" />
+    <End Role="T_Product" Type="Self.T_Product" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Category">
+        <PropertyRef Name="CategoryId" />
+      </Principal>
+      <Dependent Role="T_Product">
+        <PropertyRef Name="CategoryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_T_Product_Color">
+    <End Role="Color" Type="Self.Color" Multiplicity="0..1" />
+    <End Role="T_Product" Type="Self.T_Product" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Color">
+        <PropertyRef Name="ColorId" />
+      </Principal>
+      <Dependent Role="T_Product">
+        <PropertyRef Name="ColorId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_T_Product_Size">
+    <End Role="Size" Type="Self.Size" Multiplicity="0..1" />
+    <End Role="T_Product" Type="Self.T_Product" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Size">
+        <PropertyRef Name="SizeId" />
+      </Principal>
+      <Dependent Role="T_Product">
+        <PropertyRef Name="SizeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <EntityContainer Name="MarcAppModelStoreContainer">
+    <EntitySet Name="Category" EntityType="Self.Category" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Color" EntityType="Self.Color" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Size" EntityType="Self.Size" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="T_City" EntityType="Self.T_City" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="T_Order" EntityType="Self.T_Order" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="T_OrderDetail" EntityType="Self.T_OrderDetail" Schema="dbo" store:Type="Tables" />
@@ -210,6 +283,18 @@
     <AssociationSet Name="FK_Picture_Product" Association="Self.FK_Picture_Product">
       <End Role="T_Product" EntitySet="T_Product" />
       <End Role="T_Picture" EntitySet="T_Picture" />
+    </AssociationSet>
+    <AssociationSet Name="FK_T_Product_Category" Association="Self.FK_T_Product_Category">
+      <End Role="Category" EntitySet="Category" />
+      <End Role="T_Product" EntitySet="T_Product" />
+    </AssociationSet>
+    <AssociationSet Name="FK_T_Product_Color" Association="Self.FK_T_Product_Color">
+      <End Role="Color" EntitySet="Color" />
+      <End Role="T_Product" EntitySet="T_Product" />
+    </AssociationSet>
+    <AssociationSet Name="FK_T_Product_Size" Association="Self.FK_T_Product_Size">
+      <End Role="Size" EntitySet="Size" />
+      <End Role="T_Product" EntitySet="T_Product" />
     </AssociationSet>
   </EntityContainer>
 </Schema>

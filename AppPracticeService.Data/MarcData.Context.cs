@@ -26,6 +26,9 @@ namespace AppPracticeService.Data
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<Category> Categories { get; set; }
+        public virtual DbSet<Color> Colors { get; set; }
+        public virtual DbSet<Size> Sizes { get; set; }
         public virtual DbSet<T_City> T_City { get; set; }
         public virtual DbSet<T_Order> T_Order { get; set; }
         public virtual DbSet<T_OrderDetail> T_OrderDetail { get; set; }

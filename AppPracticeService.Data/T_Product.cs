@@ -27,16 +27,10 @@ namespace AppPracticeService.Data
         public string Description { get; set; }
         public Nullable<double> Price { get; set; }
         public Nullable<double> NewPrice { get; set; }
-        public string Category { get; set; }
-        public string SizeS { get; set; }
-        public string SizeM { get; set; }
-        public string SizeL { get; set; }
+        public Nullable<System.Guid> CategoryId { get; set; }
+        public Nullable<System.Guid> SizeId { get; set; }
         public string Material { get; set; }
-        public string Color1 { get; set; }
-        public string Color2 { get; set; }
-        public string Color3 { get; set; }
-        public string Color4 { get; set; }
-        public string Color5 { get; set; }
+        public Nullable<System.Guid> ColorId { get; set; }
         public string Model { get; set; }
         public Nullable<int> SeasonMonth { get; set; }
         public Nullable<int> SeasonYear { get; set; }
@@ -45,7 +39,11 @@ namespace AppPracticeService.Data
         public Nullable<System.DateTime> ModifiedDate { get; set; }
         public Nullable<int> ModifiedBy { get; set; }
         public Nullable<bool> Active { get; set; }
+        public Nullable<int> Quantity { get; set; }
     
+        public virtual Category Category { get; set; }
+        public virtual Color Color { get; set; }
+        public virtual Size Size { get; set; }
         public virtual ICollection<T_OrderDetail> T_OrderDetail { get; set; }
         public virtual ICollection<T_Picture> T_Picture { get; set; }
     }

@@ -22,6 +22,7 @@ namespace AppPracticeService.Data
         public Nullable<double> ProductPrice { get; set; }
         public string ProductName { get; set; }
         public string ProductCode { get; set; }
+        public Nullable<int> OrderQuantity { get; set; }
     
         public virtual T_Order T_Order { get; set; }
         public virtual T_Product T_Product { get; set; }

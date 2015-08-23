@@ -50,6 +50,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Category.cs">
+      <DependentUpon>MarcData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Color.cs">
+      <DependentUpon>MarcData.tt</DependentUpon>
+    </Compile>
     <Compile Include="ISpContext.cs" />
     <Compile Include="MarcData.Context.cs">
       <AutoGen>True</AutoGen>
@@ -67,6 +73,9 @@
       <DependentUpon>MarcData.edmx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Size.cs">
+      <DependentUpon>MarcData.tt</DependentUpon>
+    </Compile>
     <Compile Include="SpContext.cs" />
     <Compile Include="T_City.cs">
       <DependentUpon>MarcData.tt</DependentUpon>

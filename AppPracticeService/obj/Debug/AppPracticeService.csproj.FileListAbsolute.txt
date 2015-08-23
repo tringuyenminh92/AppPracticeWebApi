@@ -169,3 +169,5 @@ C:\Users\BeGa\Documents\Visual Studio 2013\Projects\AppPracticeWebApi\AppPractic
 C:\Users\BeGa\Documents\Visual Studio 2013\Projects\AppPracticeWebApi\AppPracticeService\bin\Microsoft.Practices.Unity.Mvc.xml
 C:\Users\BeGa\Documents\Visual Studio 2013\Projects\AppPracticeWebApi\AppPracticeService\bin\Microsoft.Practices.Unity.RegistrationByConvention.xml
 C:\Users\BeGa\Documents\Visual Studio 2013\Projects\AppPracticeWebApi\AppPracticeService\bin\Microsoft.Practices.Unity.WebApi.xml
+C:\Users\BeGa\Documents\Visual Studio 2013\Projects\AppPracticeWebApi\AppPracticeService\bin\AutoMapper.dll
+C:\Users\BeGa\Documents\Visual Studio 2013\Projects\AppPracticeWebApi\AppPracticeService\bin\AutoMapper.xml
